@@ -1,0 +1,142 @@
+.section-banner {
+    position: relative;
+    padding: 50px 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 0;
+
+    // Banner background styling
+    .banner {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background:
+            linear-gradient(264deg, rgba(255, 255, 255, 0) 0%, #272727 100%),
+            url("../assets/banner.png") no-repeat center / cover;
+        z-index: 0; // Background layer
+    }
+
+    // Wrapper for the content to manage spacing and layout
+    .content-wrapper {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+
+        // Content inside the wrapper
+        .content {
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            max-width: 1140px;
+            width: 100%;
+
+            // Heading section
+            .heading-section {
+                h2 {
+                    font-size: 2.5rem;
+                    margin-top: 3rem;
+
+                    @media (max-width: 768px) {
+                        font-size: 2rem;
+                    }
+
+                    @media (max-width: 480px) {
+                        font-size: 1.6rem;
+                        margin-top: 2rem;
+                    }
+                }
+            }
+
+            // Subheading section
+            .subheading-section {
+                h2 {
+                    font-size: 2rem;
+                    margin-bottom: 1rem;
+
+                    @media (max-width: 768px) {
+                        font-size: 1.6rem;
+                    }
+
+                    @media (max-width: 480px) {
+                        font-size: 1.4rem;
+                    }
+                }
+            }
+
+            // Description section
+            .description-section {
+                p {
+                    font-size: 1rem;
+                    margin-bottom: 2rem;
+                    font-weight: 500;
+                    line-height: 1.5;
+
+                    @media (max-width: 768px) {
+                        font-size: 0.9rem;
+                    }
+
+                    @media (max-width: 480px) {
+                        font-size: 0.8rem;
+                        margin-bottom: 1.5rem;
+                    }
+                }
+            }
+
+            // Button section
+            .button-section {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                button {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 0.8rem 1.5rem;
+                    font-size: 1.1rem;
+                    font-weight: 600;
+                    background-color: #007DFF;
+                    color: white;
+                    border: none;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+
+                    &:hover {
+                        background-color: #1071d8;
+                    }
+
+                    svg {
+                        font-size: 1.4rem;
+
+                        @media (max-width: 480px) {
+                            font-size: 1.2rem;
+                        }
+                    }
+
+                    @media (max-width: 768px) {
+                        padding: 0.7rem 1.2rem;
+                        font-size: 1rem;
+                    }
+
+                    @media (max-width: 480px) {
+                        padding: 0.6rem 1rem;
+                        font-size: 0.9rem;
+                    }
+                }
+            }
+        }
+    }
+
+    // Mobile adjustments for the overall section
+    @media (max-width: 768px) {
+        height: auto;
+    }
+}

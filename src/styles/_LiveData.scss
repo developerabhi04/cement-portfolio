@@ -1,0 +1,240 @@
+.live-Data {
+    // border: 1px solid red;
+    padding: 60px 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: #f9f9f9;
+
+    >div {
+        // border: 1px solid red;
+        width: 100%;
+        max-width: 1167px;
+
+        >div {
+            >h2 {
+                text-align: center;
+                font-size: 1.2rem;
+                padding-bottom: 1rem;
+            }
+
+            >h1 {
+                text-transform: uppercase;
+                text-align: center;
+                font-size: 2.5rem;
+                padding-bottom: 1rem;
+            }
+        }
+
+        >section {
+            // border: 1px solid red;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 1200px;
+            width: 100%;
+
+            >div {
+                // border: 1px solid red;
+                background-color: #EDF6FF;
+                border-radius: 8px;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                padding: 1.5rem;
+                text-align: center;
+                position: relative;
+                overflow: hidden;
+
+                // transition: transform 0.3s ease-in-out;
+                // &:hover {
+                //     transform: translateY(-10px);
+                // }
+
+                >h3 {
+                    font-size: 19px;
+                    font-weight: 600;
+                    font-family: "Roboto", Sans-serif;
+                    line-height: 2.5;
+                    color: #54595F;
+                }
+
+                >div {
+                    font-size: 1.2rem;
+                    margin-bottom: 1rem;
+                }
+
+
+
+                >span {
+                    display: inline-block;
+                    transition: transform 0.5s ease, opacity 0.5s ease, color 0.5s ease;
+                    font-size: 3.3rem;
+                    font-weight: bold;
+                    color: #2B6CB0;
+                    position: relative;
+                    opacity: 1;
+
+                    &.animate {
+                        opacity: 0.8;
+                        transform: scale(1.2);
+                        color: #2B6CB0;
+                        /* Change color for animation effect */
+                    }
+
+                    &.added {
+                        animation: countUp 0.5s ease-in-out forwards;
+                    }
+                }
+
+                >span:nth-child(2) {
+
+                    svg {
+                        font-size: 2.4rem;
+                        stroke: #2B6CB0;
+                        stroke-width: 3;
+                    }
+                }
+            }
+        }
+    }
+
+    // Responsive Styles for smaller screens
+    @media (max-width: 1024px) {
+        >div {
+            width: 90%;
+        }
+
+        >section {
+            grid-template-columns: repeat(3, 1fr); // 3 cards in a row for tablets
+
+            >div {
+                padding: 1.5rem;
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+        >div {
+            width: 90%;
+        }
+
+        >section {
+            grid-template-columns: repeat(2, 1fr); // 2 cards in a row for smaller screens
+
+            >div {
+                padding: 1rem;
+            }
+        }
+    }
+
+    @media (max-width: 480px) {
+        >div {
+            width: 90%;
+        }
+
+        >section {
+            grid-template-columns: 1fr; // Single column for very small screens
+
+            >div {
+                padding: 1rem;
+            }
+        }
+
+        >h1 {
+            font-size: 1.8rem;
+        }
+
+        >h2 {
+            font-size: 1rem;
+        }
+    }
+
+    @keyframes countUp {
+        0% {
+            transform: scale(1);
+            opacity: 0;
+        }
+
+        100% {
+            transform: scale(1.2);
+            opacity: 1;
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// bulk data
+
+.bulk-data {
+    padding: 60px 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: #f9f9f9;
+
+    >div {
+        width: 100%;
+        max-width: 1200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.9rem;
+
+        >div {
+            border: 1px solid #bcb8b8;
+            display: inline-block;
+            padding: 1.7rem 0.7rem;
+            border-radius: 10px;
+
+            >h2 {
+                text-align: center;
+                padding: 1rem;
+                background-color: #2B6CB0;
+                border-radius: 10px;
+                color: #FFFFFF;
+                font-weight: 700;
+                font-size: 1.6rem;
+            }
+
+            >div {
+                display: grid;
+                grid-template-columns: 1fr;
+                /* One column */
+                grid-template-rows: repeat(2, auto);
+                /* Two rows for each card */
+                gap: 20px;
+                /* Gap between rows */
+                max-width: 567px;
+                // width: 100%;
+                padding: 1rem;
+
+                >p {
+                    color: #7A7A7A;
+                    font-family: "Roboto", Sans-serif;
+                    font-size: 15px;
+                    font-weight: 400;
+                    letter-spacing: 0.1px;
+                }
+
+            }
+        }
+
+
+    }
+}

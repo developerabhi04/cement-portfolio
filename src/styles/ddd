@@ -1,0 +1,229 @@
+.solution-container {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 100px 0;
+    position: relative;
+
+    .content {
+        flex: 0 0 50%;
+        padding-right: 20px;
+
+        .faq-section {
+            margin-top: 30px;
+
+            .faq-items {
+                .faq-item {
+                    margin-bottom: 15px;
+                    position: relative;
+
+                    .faq-question {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        font-size: 1.1rem;
+                        cursor: pointer;
+                        background-color: transparent;
+                        border: none;
+                        color: #007DFF;
+                        padding: 10px;
+                        position: sticky;
+                        top: 20px;
+                        z-index: 10;
+                    }
+
+                    .faq-answer {
+                        display: none;
+                        margin-top: 10px;
+                        font-size: 1rem;
+                        color: #555;
+                        opacity: 0;
+                        transition: opacity 0.3s ease, transform 0.3s ease;
+                        transform: translateY(-10px);
+
+                        &.active {
+                            display: block;
+                            opacity: 1;
+                            transform: translateY(0);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .image-container {
+        flex: 0 0 50%;
+        display: flex;
+        justify-content: center;
+        // align-items: center;
+        position: relative;
+        overflow: hidden;
+        // width: 100%;
+        /* Ensure the image container takes the full width */
+    }
+
+    .image-container img {
+        width: 100%;
+        /* Ensure the image stretches fully within the container */
+        height: 100%;
+        /* Stretch the image to cover the container's height */
+        object-fit: cover;
+        /* Ensure the image covers the container without distorting */
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .move-down img {
+        transform: translateY(50px);
+        /* Move image down when toggled */
+    }
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+
+        .content,
+        .image-container {
+            flex: 0 0 100%;
+            padding: 0;
+        }
+
+        .image-container {
+            margin-bottom: 20px;
+        }
+
+        .content h2 {
+            font-size: 1.5rem;
+        }
+
+        .content p {
+            font-size: 1rem;
+        }
+
+        .content .faq-section .faq-items .faq-item .faq-question {
+            font-size: 1rem;
+        }
+
+        .content .faq-section .faq-items .faq-answer {
+            font-size: 0.9rem;
+        }
+    }
+}
+
+
+
+
+
+
+import {
+    useState
+}
+
+from "react";
+import img from "../assets/construction.png";
+
+import {
+    ArrowDropUp,
+    ArrowRight
+}
+
+from "@mui/icons-material";
+
+const Solution=()=> {
+    const [activeTab,
+    setActiveTab]=useState(0);
+    const [isImageMoved,
+    setIsImageMoved]=useState(false);
+
+    const toggleTab=(tab)=> {
+        setActiveTab(activeTab===tab ? 0 : tab);
+        setIsImageMoved( !isImageMoved); // Toggle the image movement
+    }
+
+    ;
+
+    return (<section className="solution-container" > <div className="content" > <p>Why Us</p> <h2>About Us</h2> <h2>Concerted Efforts To Build Better.</h2> <Faq activeTab= {
+            activeTab
+        }
+
+        toggleTab= {
+            toggleTab
+        }
+
+        /> </div> <div className= {
+            `image-container $ {
+                isImageMoved ? "move-down" : ""
+            }
+
+            `
+        }
+
+        > <img src= {
+            img
+        }
+
+        alt="Construction" /> </div> </section>);
+}
+
+;
+
+const Faq=({
+    activeTab, toggleTab
+
+})=> {
+    return (<div className="faq-section" > <div className="faq-items" > <div className= {
+            `faq-item $ {
+                activeTab===1 ? "active" : ""
+            }
+
+            `
+        }
+
+        > <button className="faq-question" onClick= {
+            ()=> toggleTab(1)
+        }
+
+        > <span>What is your return policy?</span> {
+            activeTab===1 ? <ArrowDropUp /> : <ArrowRight />
+        }
+
+        </button> <div className= {
+            `faq-answer $ {
+                activeTab===1 ? "active" : ""
+            }
+
+            `
+        }
+
+        > <p> If you're not satisfied with your purchase, we accept returns within 30 days of delivery.
+ </p> </div> </div> <div className= {
+            `faq-item $ {
+                activeTab===2 ? "active" : ""
+            }
+
+            `
+        }
+
+        > <button className="faq-question" onClick= {
+            ()=> toggleTab(2)
+        }
+
+        > <span>How do I track my order?</span> {
+            activeTab===2 ? <ArrowDropUp /> : <ArrowRight />
+        }
+
+        </button> <div className= {
+            `faq-answer $ {
+                activeTab===2 ? "active" : ""
+            }
+
+            `
+        }
+
+        > <p> You can track your order by clicking the tracking link in your shipping confirmation email. </p> </div> </div> </div> </div>);
+}
+
+;
+
+export default Solution;
