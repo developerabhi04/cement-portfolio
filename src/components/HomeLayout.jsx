@@ -1,12 +1,14 @@
-import Home from "../pages/Home";
-import Construction from "../pages/Construction";
-import Form from "../pages/Form";
-import AboutUs from "../pages/AboutUs";
-import Services from "../pages/Services";
-import Solution from "../pages/Solution";
-import LiveCount from "../pages/LiveCount";
-import FormPopup from "../pages/FormPopup";
-import ServicesFooter from "../pages/ServicesFooter";
+import { lazy } from "react";
+
+const Home = lazy(() => import("../pages/Home"));
+const Construction = lazy(() => import("../pages/Construction"));
+const Form = lazy(() => import("../pages/Form"));
+const AboutUs = lazy(() => import("../pages/AboutUs"));
+const Services = lazy(() => import("../pages/Services"));
+const LiveCount = lazy(() => import("../pages/LiveCount"));
+const FormPopup = lazy(() => import("../pages/FormPopup"));
+const Solution = lazy(() => import("../pages/Solution"));
+const ServicesFooter = lazy(() => import("../pages/ServicesFooter"));
 
 
 const HomeLayout = () => {

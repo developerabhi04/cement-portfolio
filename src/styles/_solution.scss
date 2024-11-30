@@ -4,8 +4,9 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    padding: 100px 0;
+    padding: 100px 20px;
     position: relative;
+    flex-wrap: wrap;
 
     .content {
         flex: 0 0 50%;
@@ -25,12 +26,9 @@
             list-style: none;
             padding: 1rem 0;
 
-
             >li {
-
                 border-bottom: 1px solid #d9d7d7;
                 padding: 0.4rem 0;
-
 
                 >span {
                     font-size: 1.1rem;
@@ -44,31 +42,22 @@
                     }
                 }
 
-
-
                 &:nth-child(4) {
                     border-bottom: none;
                 }
-
             }
-
-
-
         }
 
         .faq-section {
             margin-top: 30px;
 
             .faq-items {
-
                 .faq-item {
                     position: relative;
                     border-bottom: 1px solid #bcb8b8;
-                    
 
                     .faq-question {
                         display: flex;
-                        // justify-content: space-between;
                         justify-content: flex-start;
                         align-items: center;
                         font-size: 1.1rem;
@@ -80,31 +69,24 @@
                         position: sticky;
                         top: 20px;
                         z-index: 10;
-
                     }
 
                     .faq-answer {
                         padding-left: 2rem;
                         display: block;
-                        /* Keep the FAQ answer visible even before transition */
                         margin-bottom: 14px;
                         font-size: 1rem;
                         color: #555;
                         opacity: 0;
                         transform: translateY(-10px);
-                        /* Start from the top */
                         height: 0;
-                        /* Prevent stretching by keeping height at 0 */
                         overflow: hidden;
                         transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out, height 0.5s ease-in-out;
-                        /* Added transition for height */
 
                         &.active {
                             opacity: 1;
                             transform: translateY(0);
-                            /* Move to original position */
                             height: auto;
-                            /* Allow height to expand naturally */
                         }
 
                         &.closing {
@@ -128,7 +110,6 @@
         overflow: hidden;
         width: 100%;
         transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
-        /* Same as FAQ transition */
     }
 
     .image-container img {
@@ -136,16 +117,16 @@
         height: 100%;
         object-fit: cover;
         border-radius: 10px;
-        /* Same as FAQ transition */
     }
 
     .move-down {
         transform: translateY(50px);
-        /* Moves image down */
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 1025px) {
+        /* Adjust layout for screens between 1025px and 768px */
         flex-direction: column;
+        padding: 60px 20px;
 
         .content,
         .image-container {
@@ -171,6 +152,46 @@
 
         .content .faq-section .faq-items .faq-answer {
             font-size: 0.9rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+
+        /* Adjust layout for smaller screens (Tablets & Below) */
+        .content h2 {
+            font-size: 1.4rem;
+        }
+
+        .content p {
+            font-size: 0.9rem;
+        }
+
+        .content .faq-section .faq-items .faq-question {
+            font-size: 0.9rem;
+        }
+
+        .content .faq-section .faq-items .faq-answer {
+            font-size: 0.8rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+
+        /* Further adjustments for mobile screens */
+        .content h2 {
+            font-size: 1.3rem;
+        }
+
+        .content p {
+            font-size: 0.9rem;
+        }
+
+        .content .faq-section .faq-items .faq-question {
+            font-size: 0.9rem;
+        }
+
+        .content .faq-section .faq-items .faq-answer {
+            font-size: 0.8rem;
         }
     }
 }

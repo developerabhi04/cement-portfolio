@@ -100,7 +100,14 @@
         display: none;
         border: 1px solid #000;
         background-color: #fff;
-        padding: 0.5rem;
+        padding: 0.2rem;
+        width: 33px;
+        height: 33px;
+        border-radius: 3px;
+        margin-left: auto;
+        margin-right: auto; 
+        align-self: center; 
+
     }
 
     @media (max-width: 1025px) {
@@ -150,6 +157,124 @@
 
         .mobile-toggle-btn {
             display: block; // Show mobile menu button
+
+        }
+    }
+
+
+    @media (max-width: 768px) {
+        // For mobile devices (typically 768px and below)
+        padding: 0.8rem 1.5rem;
+
+        .logo {
+            width: 100%; // Full-width logo on mobile
+            text-align: center;
+
+            >img {
+                width: 150px; // Smaller logo on mobile
+            }
+        }
+
+        .right {
+            // width: 100%;
+            justify-content: center;
+            text-align: center;
+
+            >ul {
+                display: none; // Hide links on mobile
+            }
+
+            .center.show-mobile-menu {
+                display: block;
+                position: absolute;
+                top: 4.8rem;
+                left: 0;
+                width: 100%;
+                background-color: #fff;
+                text-align: center;
+
+                li {
+                    display: block;
+                    padding: 0.8rem;
+                    border-bottom: 1px solid #ccc;
+                }
+            }
+
+            >div {
+                display: inline-block; // Ensure the "Call Now" button remains visible
+                padding: 0.8rem;
+
+                >a {
+                    padding: 0.5rem;
+                    font-size: 0.8rem;
+                }
+            }
+        }
+
+        .mobile-toggle-btn {
+            // Show the mobile menu button
+
+            right: 1rem;
+            top: 1rem;
+        }
+    }
+
+
+
+
+    @media (max-width: 480px) {
+        // For very small mobile devices (like smartphones)
+        padding: 0.5rem 1rem;
+
+        .logo {
+            width: 100%;
+            text-align: center;
+
+            >img {
+                width: 120px; // Further reduce logo size
+            }
+        }
+
+        .right {
+            // width: 100%;
+            justify-content: center;
+            text-align: center;
+
+            >ul {
+                display: none; // Hide navigation links on small screens
+            }
+
+            .center.show-mobile-menu {
+                display: block;
+                position: absolute;
+                top: 3.7rem;
+                left: 0;
+                width: 100%;
+                background-color: #fff;
+                text-align: center;
+
+                li {
+                    display: block;
+                    padding: 0.7rem;
+                    border-bottom: 1px solid #ccc;
+                    font-size: 0.9rem; // Slightly smaller text for mobile
+                }
+            }
+
+            >div {
+                display: inline-block;
+                padding: 0.6rem;
+
+                >a {
+                    padding: 0.5rem;
+                    font-size: 0.6rem;
+                }
+            }
+        }
+
+        .mobile-toggle-btn {
+            right: 0.8rem;
+            top: 0.8rem;
         }
     }
 }

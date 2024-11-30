@@ -3,7 +3,6 @@ import { Dialog, DialogTitle, DialogContent, TextField, Button, DialogActions, G
 import CloseIcon from "@mui/icons-material/Close";
 import { styled } from '@mui/system';
 
-
 // Styled components
 const DialogTitleStyled = styled(DialogTitle)(({ theme }) => ({
     fontSize: '1.5rem',
@@ -44,9 +43,9 @@ const FormPopup = () => {
     return (
         <>
             {/* Material-UI Dialog (Modal) */}
-            <Dialog open={showForm} onClose={closeForm} >
+            <Dialog open={showForm} onClose={closeForm} fullWidth maxWidth="sm">
                 <DialogTitleStyled>
-                    <Typography variant="h4" >Non-Trade Cement Online Apply</Typography>
+                    <Typography variant="h4">Non-Trade Cement Online Apply</Typography>
                     <IconButton edge="end" color="inherit" onClick={closeForm}>
                         <CloseIcon />
                     </IconButton>
@@ -71,11 +70,10 @@ const FormPopup = () => {
                                             color: 'red',
                                         }
                                     }}
-
                                 />
                             </Grid>
 
-                            {/* Half-width fields */}
+                            {/* Half-width fields for larger screens */}
                             <Grid item xs={12} sm={6}>
                                 <TextField
                                     required
@@ -93,6 +91,7 @@ const FormPopup = () => {
                                     }}
                                 />
                             </Grid>
+
                             <Grid item xs={12} sm={6}>
                                 <TextField
                                     required
@@ -110,6 +109,7 @@ const FormPopup = () => {
                                     }}
                                 />
                             </Grid>
+
                             <Grid item xs={12} sm={6}>
                                 <TextField
                                     required
@@ -127,6 +127,7 @@ const FormPopup = () => {
                                     }}
                                 />
                             </Grid>
+
                             <Grid item xs={12} sm={6}>
                                 <TextField
                                     required
@@ -145,6 +146,7 @@ const FormPopup = () => {
                                     }}
                                 />
                             </Grid>
+
                             <Grid item xs={12} sm={6}>
                                 <TextField
                                     required
@@ -162,6 +164,7 @@ const FormPopup = () => {
                                     }}
                                 />
                             </Grid>
+
                             <Grid item xs={12} sm={6}>
                                 <TextField
                                     required
