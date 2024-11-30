@@ -1,0 +1,118 @@
+.Services-Footer {
+    padding: 80px 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+
+    >div {
+        width: 100%;
+        max-width: 1200px;
+
+
+        // first part
+        >div:first-child {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem;
+
+            >h1 {
+                text-align: center;
+                color: #1F2122;
+                font-family: "Roboto", Sans-serif;
+                font-size: 27px;
+                font-weight: 600;
+                text-transform: capitalize;
+                font-style: italic;
+                line-height: 1.3em;
+                padding-bottom: 1.2rem;
+            }
+        }
+
+
+        // second part
+        >div {
+            // border: 1px solid red;
+
+            >ul {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                list-style: none;
+                flex-wrap: wrap;
+
+                >li {
+                    text-align: center;
+                    padding: 10px;
+
+                    >span:first-child {
+                        font-size: 1.1rem;
+                        font-weight: 500;
+                        // padding: 0 4px;
+
+                        svg {
+                            margin-right: 4px;
+                            font-size: 1.2rem;
+                            stroke: #12559d;
+                            stroke-width: 1;
+                        }
+                    }
+
+
+                    >span {
+                        // border: 1px solid red;
+
+
+                    }
+
+                }
+            }
+
+
+            >ul:nth-child(2) {
+                padding-top: 2rem;
+
+                >li {
+                    padding-bottom: 3rem;
+                }
+            }
+
+            >div {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                >a {
+                    text-decoration: none;
+
+
+                    >button {
+                        display: flex;
+                        align-items: center;
+                        background-color: #007DFF;
+                        color: white;
+                        border: none;
+                        padding: 10px 20px;
+                        font-size: 1rem;
+                        border-radius: 4px;
+                        cursor: pointer;
+                        transition: background-color 0.3s ease;
+
+                        &:hover {
+                            background-color: #005bb5;
+                        }
+
+                        svg {
+                            margin-right: 8px;
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+}

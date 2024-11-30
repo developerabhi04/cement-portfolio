@@ -1,39 +1,36 @@
-@use "./mixin";
-
-
-// header
 .header {
-    border: 1px solid #dbc5c5;
     display: flex;
     flex-direction: row;
-    gap: 1.2rem;
-    height: 6rem;
-    padding: 0.5rem;
-    box-shadow: 0 0 10px #cbc9c9;
+    width: 100%;
+    padding: 1rem 6.5rem;
+    box-shadow: 0 0 5px #cbc9c9;
+    background-color: #FFFFFF;
+    z-index: 99;
 
     .logo {
-        width: 30%;
-        // border: 1px solid red;
+        width: 35%;
         display: flex;
-        margin-left: 4rem;
+
+        >img {
+            width: 300px;
+        }
     }
 
     .right {
-        // border: 1px solid blue;
-        width: 70%;
+        width: 65%;
         display: flex;
-        margin-right: 8rem;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 3rem;
 
-        >div {
-            width: 100%;
+        >ul {
             display: flex;
-            gap: 3rem;
-            justify-content: flex-end;
-            align-items: center;
+            gap: 4rem;
+            list-style: none;
 
-            a {
-                color: #000000;
-                font-family: "Roboto", Sans-serif;
+            >li {
+                color: #000;
+                font-family: "Roboto", sans-serif;
                 font-size: 16px;
                 font-weight: 500;
                 position: relative;
@@ -54,13 +51,6 @@
                     z-index: -1;
                 }
 
-
-                &:nth-child(1) {
-                    background-color: #f4e5e59c;
-                    padding: 0.1rem 0.5rem;
-                }
-
-
                 &:nth-child(2),
                 &:nth-child(3),
                 &:nth-child(4) {
@@ -68,46 +58,105 @@
                         transform: scaleX(1);
                     }
 
-                    &:hover::before {
-                        transform: scaleX(1);
-                    }
-
                     &:hover {
-                        color: #ffffff;
-                        height: auto;
-                        transform: scale(1.1);
-                        padding: 0.1rem 0.5rem;
-                    }
-
-                    &:not(:hover) {
-                        padding: 0.1rem 0.5rem;
-                        height: auto;
+                        color: #fff;
                         transform: scale(1.1);
                     }
                 }
-
-
-                &:nth-child(5) {
-                    background-color: #2B6CB0;
-                    padding: 1.2rem 1.5rem;
-                    line-height: 1;
-                    text-align: center;
-                    font-family: "Roboto", Sans-serif;
-                    font-size: 14px;
-                    font-weight: 500;
-                    text-transform: uppercase;
-                    letter-spacing: 1.53px;
-                    color: #FFFFFF;
-                    border: 1px solid #000000;
-
-                    &:hover {
-                        background: #ffffff;
-                        color: #000000;
-                        border: 1px solid #000000;
-                    }
-                }
-
             }
         }
+
+        >div {
+            >a {
+                background-color: #2B6CB0;
+                padding: 1.2rem 1.5rem;
+                text-align: center;
+                font-family: "Roboto", sans-serif;
+                font-size: 14px;
+                font-weight: 500;
+                color: #fff;
+                border: 1px solid #000;
+
+                &:hover {
+                    background: #fff;
+                    color: #000;
+                }
+            }
+        }
+    }
+
+    .mobile-toggle-btn {
+        display: none;
+        border: 1px solid #000;
+        background-color: #fff;
+        padding: 0.5rem;
+    }
+
+    @media (max-width: 1025px) {
+        padding: 1rem 2rem;
+
+        .logo {
+            width: 50%;
+
+            >img {
+                width: 200px;
+            }
+        }
+
+        .right {
+            width: 50%;
+            justify-content: flex-end;
+
+            >ul {
+                display: none; // Hide links on smaller screens
+            }
+
+            .center.show-mobile-menu {
+                display: block;
+                position: absolute;
+                top: 5.6rem;
+                left: 0;
+                width: 100%;
+                background-color: #fff;
+                text-align: center;
+
+                li {
+                    display: block;
+                    padding: 1rem;
+                    border-bottom: 1px solid #ccc;
+                }
+            }
+
+            >div {
+                display: inline-block; // Keep the "Call Now" button visible
+                padding: 1rem;
+
+                >a {
+                    padding: 0.8rem;
+                }
+            }
+        }
+
+        .mobile-toggle-btn {
+            display: block; // Show mobile menu button
+        }
+    }
+}
+
+.sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: #fff;
+    animation: stickyHeader 0.3s ease forwards;
+}
+
+@keyframes stickyHeader {
+    0% {
+        transform: translateY(-85px);
+    }
+
+    100% {
+        transform: translateY(0);
     }
 }

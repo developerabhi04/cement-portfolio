@@ -7,7 +7,7 @@ import NotFound from "./pages/NotFound.jsx";
 // code spliting
 const Header = lazy(() => import("./components/Header"));
 const HomeLayout = lazy(() => import("./components/HomeLayout"));
-const Footer = lazy(() => import("./pages/Footer.jsx"));
+const Footer = lazy(() => import("./components/Footer.jsx"));
 
 const App = () => {
   return (

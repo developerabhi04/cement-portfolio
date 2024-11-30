@@ -17,10 +17,12 @@ const AboutUs = () => {
                         ensuring a more stable structure. High-strength cement offers superior
                         durability and stability.
                     </p>
-                    <button>
-                        <Phone />
-                        Call Now
-                    </button>
+                    <a href="tel:918910503006">
+                        <button>
+                            <Phone />
+                            Call Now
+                        </button>
+                    </a>
                 </div>
             </div>
         </section>
