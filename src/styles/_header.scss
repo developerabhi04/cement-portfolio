@@ -7,6 +7,7 @@
     background-color: #FFFFFF;
     z-index: 99;
 
+
     .logo {
         width: 35%;
         display: flex;
@@ -27,6 +28,7 @@
             display: flex;
             gap: 4rem;
             list-style: none;
+            align-items: center;
 
             >li {
                 color: #000;
@@ -49,13 +51,22 @@
                     transform-origin: left;
                     transition: transform 0.4s ease;
                     z-index: -1;
+                    // padding: 0.1rem 0.3rem;
+                }
+
+                &:nth-child(1) {
+                    background-color: #f4e5e59c;
+                    padding: 0.1rem 0.5rem;
                 }
 
                 &:nth-child(2),
                 &:nth-child(3),
                 &:nth-child(4) {
+                    padding: 0.1rem 0.3rem;
+
                     &:hover::before {
                         transform: scaleX(1);
+
                     }
 
                     &:hover {
