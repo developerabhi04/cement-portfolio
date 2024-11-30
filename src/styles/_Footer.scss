@@ -19,22 +19,28 @@
         flex: 1;
         min-width: 250px;
         margin-bottom: 30px;
+        position: relative;
+        /* Ensures the pseudo-element is positioned correctly */
 
         h4 {
             font-size: 18px;
             color: #f4f4f4;
             text-transform: uppercase;
             margin-bottom: 20px;
-            position: relative;
 
+            /* Pseudo-element for the decorative line */
             &:after {
                 content: "";
                 position: absolute;
-                left: 0;
+                left: 50%;
+                /* Center the line horizontally */
                 bottom: -10px;
                 background-color: rgb(0, 104, 136);
                 height: 2px;
                 width: 50px;
+                /* Default width */
+                transform: translateX(-50%);
+                /* Center the line based on its own width */
             }
         }
 
@@ -72,6 +78,7 @@
             align-items: center;
             justify-content: center;
             border-radius: 50%;
+            margin-bottom: 10px;
 
             &:hover {
                 background-color: rgb(0, 104, 136);
@@ -81,6 +88,79 @@
                 color: #fff;
                 font-size: 20px;
             }
+        }
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 1200px) {
+        .footer-container {
+            padding: 0 15px;
+        }
+    }
+
+    @media (max-width: 992px) {
+        .footer-row {
+            justify-content: center;
+            /* Center content on medium screens */
+        }
+
+        .footer-col {
+            min-width: 300px;
+            /* Ensure enough space for the columns */
+        }
+    }
+
+    @media (max-width: 768px) {
+        .footer-row {
+            justify-content: center;
+        }
+
+        .footer-col {
+            min-width: 100%;
+            text-align: center;
+            /* Center text in each column */
+        }
+
+        .social-links {
+            flex-direction: row;
+            justify-content: center;
+            margin-top: 20px;
+
+            a {
+                margin-right: 15px;
+            }
+        }
+
+        /* Adjust the width of the pseudo-element for smaller screens */
+        .footer-col h4:after {
+            width: 40px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .footer-row {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-col {
+            min-width: 100%;
+            text-align: center;
+        }
+
+        .social-links {
+            flex-direction: row;
+            justify-content: center;
+            margin-top: 20px;
+
+            a {
+                margin-right: 10px;
+            }
+        }
+
+        /* Adjust the width of the pseudo-element for mobile screens */
+        .footer-col h4:after {
+            width: 30px;
         }
     }
 }
