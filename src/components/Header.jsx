@@ -1,11 +1,10 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { Link as LinkScroll } from "react-scroll";
 import logo from "../assets/adn.png";
 import { useEffect, useState } from "react";
 import { Close, Menu } from "@mui/icons-material";
 
 const Header = () => {
-    const navigate = useNavigate();
-
     const [showMobileMenu, setShowMobileMenu] = useState(false);
     const [scrolled, setScrolled] = useState(false);
 
@@ -37,10 +36,34 @@ const Header = () => {
 
             <div className="right">
                 <ul className={`center ${showMobileMenu ? "show-mobile-menu" : ""}`}>
-                    <li onClick={() => navigate("/")}>Home</li>
-                    <li onClick={() => navigate("/about")}>About us</li>
-                    <li onClick={() => navigate("/services")}>Services</li>
-                    <li onClick={() => navigate("/contact")}>Contact Us</li>
+                    <li>Home</li>
+                    <li>
+                        <LinkScroll
+                            to="about"
+                            smooth={true}
+                            duration={500}
+                        >
+                            About Us
+                        </LinkScroll>
+                    </li>
+                    <li>
+                        <LinkScroll
+                            to="services"
+                            smooth={true}
+                            duration={500}
+                        >
+                            Services
+                        </LinkScroll>
+                    </li>
+                    <li>
+                        <LinkScroll
+                            to="contact"
+                            smooth={true}
+                            duration={500}
+                        >
+                            Contact Us
+                        </LinkScroll>
+                    </li>
                 </ul>
 
                 <div>

@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
-import { Dialog, DialogTitle, DialogContent, TextField, Button, DialogActions, Grid, IconButton, Typography } from "@mui/material";
+import { Dialog, DialogTitle, DialogContent, TextField, Button, DialogActions, Grid, IconButton, Typography, Snackbar, Alert } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { styled } from '@mui/system';
+import { server } from "../main";
+
 
 // Styled components
 const DialogTitleStyled = styled(DialogTitle)(({ theme }) => ({
@@ -32,6 +34,19 @@ const SubmitButton = styled(Button)(() => ({
 const FormPopup = () => {
     const [showForm, setShowForm] = useState(false);
 
+    const [name, setName] = useState("");
+    const [contactNumber, setContactNumber] = useState("");
+    const [alternateNumber, setAlternateNumber] = useState("");
+    const [cementName, setCementName] = useState("");
+    const [quantity, setQuantity] = useState("");
+    const [city, setCity] = useState("");
+    const [state, setState] = useState("");
+    const [pinCode, setPincode] = useState("");
+
+    // 
+    const [open, setOpen] = useState(false);
+    const [message, setMessage] = useState('');
+
     useEffect(() => {
         setShowForm(true); // Show form on load
     }, []);
@@ -40,19 +55,77 @@ const FormPopup = () => {
         setShowForm(false);
     };
 
+
+
+    const submitHandler = async (e) => {
+        e.preventDefault();
+
+        const formData = {
+            name,
+            contactNumber,
+            alternateNumber,
+            cementName,
+            quantity,
+            city,
+            state,
+            pinCode,
+        };
+
+        try {
+            const response = await fetch(`${server}/user/submit`, {
+                method: "POST",
+                headers: {
+                    "Content-type": "application/json",
+                },
+                body: JSON.stringify(formData)
+            })
+
+            const data = await response.json();
+
+            if (data.success) {
+                setMessage('Thank! you for submitting the form Sucessfully, We will get back to you shortly.');
+                setOpen(true);
+
+                setName('');
+                setContactNumber('');
+                setAlternateNumber('');
+                setCementName('');
+                setQuantity('');
+                setCity('');
+                setState('');
+                setPincode('');
+
+
+                setTimeout(closeForm, 2000);
+            } else {
+                setMessage('Error: ' + data.message);
+                setOpen(true);
+            }
+
+
+
+        } catch (error) {
+            console.error('Error: ', error);
+            setMessage('Something went wrong');
+            setOpen(true);
+        }
+
+    }
+
     return (
         <>
             {/* Material-UI Dialog (Modal) */}
-            <Dialog open={showForm} onClose={closeForm} fullWidth maxWidth="sm">
+            <Dialog open={showForm} onClose={null} scroll="body" fullWidth maxWidth="sm" >
+
                 <DialogTitleStyled>
-                    <Typography variant="h4">Non-Trade Cement Online Apply</Typography>
+                    <Typography variant="h4" component="div">Non-Trade Cement Online Apply</Typography>
                     <IconButton edge="end" color="inherit" onClick={closeForm}>
                         <CloseIcon />
                     </IconButton>
                 </DialogTitleStyled>
 
                 <FormContainer style={{ paddingTop: '7px' }}>
-                    <form>
+                    <form onSubmit={submitHandler}>
                         <Grid container spacing={3}>
                             {/* Full-width fields */}
                             <Grid item xs={12}>
@@ -63,13 +136,15 @@ const FormPopup = () => {
                                     label="Name"
                                     variant="outlined"
                                     name="name"
-                                    placeholder="Name"
                                     sx={{
                                         marginBottom: 2,
                                         '& .MuiFormLabel-asterisk': {
                                             color: 'red',
                                         }
                                     }}
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)}
+
                                 />
                             </Grid>
 
@@ -82,13 +157,15 @@ const FormPopup = () => {
                                     label="Contact Number"
                                     variant="outlined"
                                     name="contact"
-                                    placeholder="Contact Number"
+                                    type="number"
                                     sx={{
                                         marginBottom: 2,
                                         '& .MuiFormLabel-asterisk': {
                                             color: 'red',
                                         }
                                     }}
+                                    value={contactNumber}
+                                    onChange={(e) => setContactNumber(e.target.value)}
                                 />
                             </Grid>
 
@@ -100,13 +177,15 @@ const FormPopup = () => {
                                     label="Alternate Number"
                                     variant="outlined"
                                     name="alt_contact"
-                                    placeholder="Alternate Number"
+                                    type="number"
                                     sx={{
                                         marginBottom: 2,
                                         '& .MuiFormLabel-asterisk': {
                                             color: 'red',
                                         }
                                     }}
+                                    value={alternateNumber}
+                                    onChange={(e) => setAlternateNumber(e.target.value)}
                                 />
                             </Grid>
 
@@ -118,13 +197,14 @@ const FormPopup = () => {
                                     label="Cement Name"
                                     variant="outlined"
                                     name="cement_name"
-                                    placeholder="Cement Name"
                                     sx={{
                                         marginBottom: 2,
                                         '& .MuiFormLabel-asterisk': {
                                             color: 'red',
                                         }
                                     }}
+                                    value={cementName}
+                                    onChange={(e) => setCementName(e.target.value)}
                                 />
                             </Grid>
 
@@ -137,13 +217,14 @@ const FormPopup = () => {
                                     type="number"
                                     variant="outlined"
                                     name="quantity"
-                                    placeholder="Quantity"
                                     sx={{
                                         marginBottom: 2,
                                         '& .MuiFormLabel-asterisk': {
                                             color: 'red',
                                         }
                                     }}
+                                    value={quantity}
+                                    onChange={(e) => setQuantity(e.target.value)}
                                 />
                             </Grid>
 
@@ -155,13 +236,14 @@ const FormPopup = () => {
                                     label="City"
                                     variant="outlined"
                                     name="city"
-                                    placeholder="City"
                                     sx={{
                                         marginBottom: 2,
                                         '& .MuiFormLabel-asterisk': {
                                             color: 'red',
                                         }
                                     }}
+                                    value={city}
+                                    onChange={(e) => setCity(e.target.value)}
                                 />
                             </Grid>
 
@@ -173,13 +255,14 @@ const FormPopup = () => {
                                     label="State"
                                     variant="outlined"
                                     name="state"
-                                    placeholder="State"
                                     sx={{
                                         marginBottom: 2,
                                         '& .MuiFormLabel-asterisk': {
                                             color: 'red',
                                         }
                                     }}
+                                    value={state}
+                                    onChange={(e) => setState(e.target.value)}
                                 />
                             </Grid>
 
@@ -191,27 +274,44 @@ const FormPopup = () => {
                                     label="Pin Code"
                                     variant="outlined"
                                     name="pincode"
-                                    placeholder="Pin Code"
+                                    type="number"
                                     sx={{
                                         marginBottom: 2,
                                         '& .MuiFormLabel-asterisk': {
                                             color: 'red',
                                         }
                                     }}
+                                    value={pinCode}
+                                    onChange={(e) => setPincode(e.target.value)}
                                 />
                             </Grid>
                         </Grid>
-                    </form>
-                </FormContainer>
 
-                <DialogActions sx={{ justifyContent: "flex-start" }}>
-                    <SubmitButton
-                        type="submit"
-                        variant="contained"
-                    >
-                        Send Now
-                    </SubmitButton>
-                </DialogActions>
+
+                        <DialogActions sx={{ justifyContent: "flex-start" }}>
+                            <SubmitButton
+                                type="submit"
+                                variant="contained"
+                            >
+                                Send Now
+                            </SubmitButton>
+                        </DialogActions>
+
+                    </form>
+
+
+                    <Snackbar open={open} autoHideDuration={6000} onClose={() => setOpen(false)} anchorOrigin={{ vertical: 'top', horizontal: 'center' }} sx={{
+                        // marginTop: '70px',
+                    }}>
+                        <Alert
+                            onClose={() => setOpen(false)}
+                            severity="success"
+                            variant="filled"
+                            sx={{ width: '100%' }}>
+                            {message}
+                        </Alert>
+                    </Snackbar>
+                </FormContainer>
             </Dialog>
         </>
     );

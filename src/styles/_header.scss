@@ -39,6 +39,8 @@
                 padding: 0.5rem;
                 overflow: hidden;
 
+
+
                 &::before {
                     content: '';
                     position: absolute;
@@ -54,10 +56,8 @@
                     // padding: 0.1rem 0.3rem;
                 }
 
-                &:nth-child(1) {
-                    background-color: #f4e5e59c;
-                    padding: 0.1rem 0.5rem;
-                }
+                a {}
+
 
                 &:nth-child(2),
                 &:nth-child(3),
@@ -73,6 +73,12 @@
                         color: #fff;
                         transform: scale(1.1);
                     }
+                }
+
+
+                &:nth-child(1) {
+                    background-color: #f4e5e59c;
+                    padding: 0.1rem 0.5rem;
                 }
             }
         }
@@ -96,6 +102,13 @@
         }
     }
 
+    .right ul li a,
+    .scroll-link {
+        text-decoration: none;
+        color: inherit;
+
+    }
+
     .mobile-toggle-btn {
         display: none;
         border: 1px solid #000;
@@ -105,12 +118,45 @@
         height: 33px;
         border-radius: 3px;
         margin-left: auto;
-        margin-right: auto; 
-        align-self: center; 
+        margin-right: auto;
+        align-self: center;
 
     }
+}
 
-    @media (max-width: 1025px) {
+.sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: #fff;
+    animation: stickyHeader 0.3s ease forwards;
+}
+
+@keyframes stickyHeader {
+    0% {
+        transform: translateY(-85px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Tablet (max-width: 1025px)
+@media (max-width: 1025px) {
+    .header {
         padding: 1rem 2rem;
 
         .logo {
@@ -126,7 +172,7 @@
             justify-content: flex-end;
 
             >ul {
-                display: none; // Hide links on smaller screens
+                display: none; // Hide navigation links on smaller screens
             }
 
             .center.show-mobile-menu {
@@ -146,7 +192,7 @@
             }
 
             >div {
-                display: inline-block; // Keep the "Call Now" button visible
+                display: inline-block;
                 padding: 1rem;
 
                 >a {
@@ -157,26 +203,25 @@
 
         .mobile-toggle-btn {
             display: block; // Show mobile menu button
-
         }
     }
+}
 
-
-    @media (max-width: 768px) {
-        // For mobile devices (typically 768px and below)
+// Mobile (max-width: 768px)
+@media (max-width: 768px) {
+    .header {
         padding: 0.8rem 1.5rem;
 
         .logo {
-            width: 100%; // Full-width logo on mobile
+            width: 100%;
             text-align: center;
 
             >img {
-                width: 150px; // Smaller logo on mobile
+                width: 150px;
             }
         }
 
         .right {
-            // width: 100%;
             justify-content: center;
             text-align: center;
 
@@ -201,7 +246,7 @@
             }
 
             >div {
-                display: inline-block; // Ensure the "Call Now" button remains visible
+                display: inline-block;
                 padding: 0.8rem;
 
                 >a {
@@ -212,18 +257,15 @@
         }
 
         .mobile-toggle-btn {
-            // Show the mobile menu button
-
             right: 1rem;
             top: 1rem;
         }
     }
+}
 
-
-
-
-    @media (max-width: 480px) {
-        // For very small mobile devices (like smartphones)
+// Small mobile (max-width: 480px)
+@media (max-width: 480px) {
+    .header {
         padding: 0.5rem 1rem;
 
         .logo {
@@ -231,12 +273,11 @@
             text-align: center;
 
             >img {
-                width: 120px; // Further reduce logo size
+                width: 120px;
             }
         }
 
         .right {
-            // width: 100%;
             justify-content: center;
             text-align: center;
 
@@ -257,7 +298,7 @@
                     display: block;
                     padding: 0.7rem;
                     border-bottom: 1px solid #ccc;
-                    font-size: 0.9rem; // Slightly smaller text for mobile
+                    font-size: 0.9rem;
                 }
             }
 
@@ -276,23 +317,5 @@
             right: 0.8rem;
             top: 0.8rem;
         }
-    }
-}
-
-.sticky-header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background-color: #fff;
-    animation: stickyHeader 0.3s ease forwards;
-}
-
-@keyframes stickyHeader {
-    0% {
-        transform: translateY(-85px);
-    }
-
-    100% {
-        transform: translateY(0);
     }
 }

@@ -3,7 +3,7 @@ import img1 from "../assets/Construction-Cement-bulk.jpeg"
 
 const Services = () => {
     return (
-        <section className="constructions-containers">
+        <section className="constructions-containers" id="services">
             <div className="construction-header">
                 <p>Services</p>
                 <h2>High Performance Services For Multiple Industries!</h2>

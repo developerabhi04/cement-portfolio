@@ -1,6 +1,8 @@
-
-import { TextField, Button, Grid, Typography } from "@mui/material";
+import { TextField, Button, Grid, Typography, Snackbar, Alert } from "@mui/material";
 import { styled } from '@mui/system';
+import { useState } from "react";
+import { server } from "../main";
+
 
 // Styled components
 const FormContainer = styled('div')(({ theme }) => ({
@@ -23,15 +25,114 @@ const SubmitButton = styled(Button)(() => ({
 
 const Form = () => {
 
+    const [name, setName] = useState("");
+    const [contactNumber, setContactNumber] = useState("");
+    const [alternateNumber, setAlternateNumber] = useState("");
+    const [cementName, setCementName] = useState("");
+    const [quantity, setQuantity] = useState("");
+    const [city, setCity] = useState("");
+    const [state, setState] = useState("");
+    const [pinCode, setPincode] = useState("");
+
+    // 
+    const [open, setOpen] = useState(false);
+    const [message, setMessage] = useState('');
+
+
+    const submitHandler = async (e) => {
+        e.preventDefault();
+
+        const formData = {
+            name,
+            contactNumber,
+            alternateNumber,
+            cementName,
+            quantity,
+            city,
+            state,
+            pinCode,
+        };
+
+        try {
+
+            const response = await fetch(`${server}/user/submit`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                setMessage('Thank! you for submitting the form Sucessfully, We will get back to you shortly.');
+                setOpen(true);
+
+                setName('');
+                setContactNumber('');
+                setAlternateNumber('');
+                setCementName('');
+                setQuantity('');
+                setCity('');
+                setState('');
+                setPincode('');
+            } else {
+                setMessage('Error: ' + data.message);
+                setOpen(true);
+            }
+        } catch (error) {
+            console.error('Error: ', error);
+            setMessage('Something went wrong');
+            setOpen(true);
+        }
+    }
+
+
+    // const submitHandler = async (e) => {
+    //     e.preventDefault();
+
+    //     const formData = {
+    //         name,
+    //         contactNumber,
+    //         alternateNumber,
+    //         cementName,
+    //         quantity,
+    //         city,
+    //         state,
+    //         pinCode,
+    //     };
+
+    //     try {
+    //         const response = await axios.post(`${server}/user/submit`, formData, {
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //             }
+    //         });
+
+    //         // Check if the response was successful
+    //         if (response.data.success) {
+    //             alert('Submit Successfully');
+    //         } else {
+    //             alert('Error: ' + response.data.message);
+    //         }
+
+    //     } catch (error) {
+    //         console.error('Error: ', error);
+    //         alert('Something went wrong');
+    //     }
+    // };
+
+
 
     return (
-        <FormContainer>
+        <FormContainer id="contact">
             {/* Center the heading */}
             <Typography variant="h4" gutterBottom align="center" sx={{ marginBottom: "3rem", fontWeight: 600 }}>
                 Non-Trade Cement Online Apply
             </Typography>
 
-            <form>
+            <form onSubmit={submitHandler}>
                 <Grid container spacing={3}>
                     {/* Full-width fields */}
                     <Grid item xs={12}>
@@ -42,11 +143,12 @@ const Form = () => {
                             label="Name"
                             variant="outlined"
                             name="name"
-                            placeholder="Name"
                             sx={{
                                 marginBottom: 2,
                                 '& .MuiFormLabel-asterisk': { color: 'red' }
                             }}
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
                         />
                     </Grid>
 
@@ -57,13 +159,15 @@ const Form = () => {
                             id="outlined-required"
                             fullWidth
                             label="Contact Number"
+                            type="number"
                             variant="outlined"
                             name="contact"
-                            placeholder="Contact Number"
                             sx={{
                                 marginBottom: 2,
                                 '& .MuiFormLabel-asterisk': { color: 'red' }
                             }}
+                            value={contactNumber}
+                            onChange={(e) => setContactNumber(e.target.value)}
                         />
                     </Grid>
                     <Grid item xs={12} sm={6}>
@@ -72,13 +176,15 @@ const Form = () => {
                             id="outlined-required"
                             fullWidth
                             label="Alternate Number"
+                            type="number"
                             variant="outlined"
                             name="alt_contact"
-                            placeholder="Alternate Number"
                             sx={{
                                 marginBottom: 2,
                                 '& .MuiFormLabel-asterisk': { color: 'red' }
                             }}
+                            value={alternateNumber}
+                            onChange={(e) => setAlternateNumber(e.target.value)}
                         />
                     </Grid>
                     <Grid item xs={12} sm={6}>
@@ -89,11 +195,12 @@ const Form = () => {
                             label="Cement Name"
                             variant="outlined"
                             name="cement_name"
-                            placeholder="Cement Name"
                             sx={{
                                 marginBottom: 2,
                                 '& .MuiFormLabel-asterisk': { color: 'red' }
                             }}
+                            value={cementName}
+                            onChange={(e) => setCementName(e.target.value)}
                         />
                     </Grid>
                     <Grid item xs={12} sm={6}>
@@ -105,11 +212,12 @@ const Form = () => {
                             type="number"
                             variant="outlined"
                             name="quantity"
-                            placeholder="Quantity"
                             sx={{
                                 marginBottom: 2,
                                 '& .MuiFormLabel-asterisk': { color: 'red' }
                             }}
+                            value={quantity}
+                            onChange={(e) => setQuantity(e.target.value)}
                         />
                     </Grid>
                     <Grid item xs={12} sm={6}>
@@ -125,6 +233,8 @@ const Form = () => {
                                 marginBottom: 2,
                                 '& .MuiFormLabel-asterisk': { color: 'red' }
                             }}
+                            value={city}
+                            onChange={(e) => setCity(e.target.value)}
                         />
                     </Grid>
                     <Grid item xs={12} sm={6}>
@@ -140,6 +250,8 @@ const Form = () => {
                                 marginBottom: 2,
                                 '& .MuiFormLabel-asterisk': { color: 'red' }
                             }}
+                            value={state}
+                            onChange={(e) => setState(e.target.value)}
                         />
                     </Grid>
 
@@ -151,11 +263,14 @@ const Form = () => {
                             label="Pin Code"
                             variant="outlined"
                             name="pincode"
+                            type="number"
                             placeholder="Pin Code"
                             sx={{
                                 marginBottom: 2,
                                 '& .MuiFormLabel-asterisk': { color: 'red' }
                             }}
+                            value={pinCode}
+                            onChange={(e) => setPincode(e.target.value)}
                         />
                     </Grid>
                 </Grid>
@@ -163,6 +278,19 @@ const Form = () => {
                     Send Now
                 </SubmitButton>
             </form>
+
+            {/* Snackbar for success/error message */}
+            <Snackbar open={open} autoHideDuration={6000} onClose={() => setOpen(false)} anchorOrigin={{ vertical: 'top', horizontal: 'center' }} sx={{
+                marginTop: '70px',
+            }}>
+                <Alert
+                    onClose={() => setOpen(false)}
+                    severity="success"
+                    variant="filled"
+                    sx={{ width: '100%' }}>
+                    {message}
+                </Alert>
+            </Snackbar>
         </FormContainer>
     );
 };
