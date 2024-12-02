@@ -46,6 +46,7 @@ const FormPopup = () => {
     // 
     const [open, setOpen] = useState(false);
     const [message, setMessage] = useState('');
+    const [alertSeverity, setAlertSeverity] = useState('success');
 
     useEffect(() => {
         setShowForm(true); // Show form on load
@@ -84,6 +85,7 @@ const FormPopup = () => {
 
             if (data.success) {
                 setMessage('Thank! you for submitting the form Sucessfully, We will get back to you shortly.');
+                setAlertSeverity('success');
                 setOpen(true);
 
                 setName('');
@@ -99,6 +101,7 @@ const FormPopup = () => {
                 setTimeout(closeForm, 2000);
             } else {
                 setMessage('Error: ' + data.message);
+                setAlertSeverity('error');
                 setOpen(true);
             }
 
@@ -106,7 +109,8 @@ const FormPopup = () => {
 
         } catch (error) {
             console.error('Error: ', error);
-            setMessage('Something went wrong');
+            setMessage('Something went wrong!. Please try again');
+            setAlertSeverity('error');
             setOpen(true);
         }
 
@@ -300,14 +304,19 @@ const FormPopup = () => {
                     </form>
 
 
-                    <Snackbar open={open} autoHideDuration={6000} onClose={() => setOpen(false)} anchorOrigin={{ vertical: 'top', horizontal: 'center' }} sx={{
-                        // marginTop: '70px',
-                    }}>
+                    <Snackbar
+                        open={open}
+                        autoHideDuration={6000}
+                        onClose={() => setOpen(false)}
+                        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                    >
                         <Alert
                             onClose={() => setOpen(false)}
-                            severity="success"
+                            // severity= "success"
+                            severity= {alertSeverity}
                             variant="filled"
-                            sx={{ width: '100%' }}>
+                            sx={{ width: '100%' }}
+                        >
                             {message}
                         </Alert>
                     </Snackbar>

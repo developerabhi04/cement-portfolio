@@ -1,9 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { lazy, Suspense, useEffect, useState } from "react";
-import axios from "axios";
-import { server } from "./main";
+import { lazy, Suspense} from "react";
 import ProtectedRoute from "./auth/ProtectedRoute";
 import { Toaster } from "react-hot-toast";
+import Loaders from "./components/loader/Loaders";
 
 
 
@@ -18,25 +17,10 @@ const UserManagement = lazy(() => import("./pages/admin/UsersManagment"));
 
 
 const App = () => {
-  const [admin, setAdmin] = useState(false);
-
-  useEffect(() => {
-    const checkAdminAuth = async () => {
-      try {
-        await axios.get(`${server}/admin/stats`, { withCredentials: true });
-        setAdmin(true);
-      } catch (error) {
-        console.error(error)
-        setAdmin(false);
-      }
-    };
-    checkAdminAuth();
-  }, []);
-
-  return (
+    return (
     <>
       <BrowserRouter>
-        <Suspense>
+        <Suspense fallback={<Loaders />}>
           <Routes>
             <Route path={"/"} element={<HomeLayout />} />
 
@@ -47,7 +31,7 @@ const App = () => {
             {/* Protected Admin Routes */}
             <Route path="/admin/dashboard"
               element={
-                <ProtectedRoute user={admin}>
+                <ProtectedRoute>
                   <Dashboard />
                 </ProtectedRoute>
               }
@@ -55,14 +39,14 @@ const App = () => {
 
             <Route path="/admin/users-management"
               element={
-                <ProtectedRoute user={admin}>
+                <ProtectedRoute>
                   <UserManagement />
                 </ProtectedRoute>
               }
             />
             <Route path="/admin/export-data"
               element={
-                <ProtectedRoute user={admin}>
+                <ProtectedRoute>
                   <ExportData />
                 </ProtectedRoute>
               }

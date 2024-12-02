@@ -1,11 +1,12 @@
 import { Navigate, Outlet } from "react-router-dom";
 
+const ProtectedRoute = ({ children, redirect = "/admin" }) => {
+    // Check for token in localStorage
+    const token = localStorage.getItem("admin-token");
 
-const ProtectedRoute = ({ children, user, redirect = "/admin" }) => {
+    if (!token) return <Navigate to={redirect} />;
 
-    if (!user) return <Navigate to={redirect} />;
-
-    return children ? children : <Outlet />
+    return children ? children : <Outlet />;
 }
 
-export default ProtectedRoute
+export default ProtectedRoute;

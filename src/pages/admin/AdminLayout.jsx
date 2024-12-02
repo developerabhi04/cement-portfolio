@@ -92,8 +92,10 @@ const Sidebar = ({ w = "100%" }) => {
     const logoutHandler = async () => {
         try {
             await axios.get(`${server}/admin/logout`, { withCredentials: true });
+            localStorage.removeItem("admin-token");
             toast.success("Logged out successfully"); // Show success toast
             navigate("/admin");
+
         } catch (error) {
             console.error(error)
             toast.error("Failed to log out"); // Show error toast

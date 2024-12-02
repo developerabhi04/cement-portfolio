@@ -37,6 +37,7 @@ const Form = () => {
     // 
     const [open, setOpen] = useState(false);
     const [message, setMessage] = useState('');
+    const [severity, setSeverity] = useState("success");
 
 
     const submitHandler = async (e) => {
@@ -67,6 +68,7 @@ const Form = () => {
 
             if (data.success) {
                 setMessage('Thank! you for submitting the form Sucessfully, We will get back to you shortly.');
+                setSeverity("success");
                 setOpen(true);
 
                 setName('');
@@ -77,13 +79,16 @@ const Form = () => {
                 setCity('');
                 setState('');
                 setPincode('');
+
             } else {
                 setMessage('Error: ' + data.message);
+                setSeverity("error");
                 setOpen(true);
             }
         } catch (error) {
             console.error('Error: ', error);
             setMessage('Something went wrong');
+            setSeverity('error');
             setOpen(true);
         }
     }
@@ -203,6 +208,7 @@ const Form = () => {
                             onChange={(e) => setCementName(e.target.value)}
                         />
                     </Grid>
+
                     <Grid item xs={12} sm={6}>
                         <TextField
                             required
@@ -285,7 +291,7 @@ const Form = () => {
             }}>
                 <Alert
                     onClose={() => setOpen(false)}
-                    severity="success"
+                    severity={severity}
                     variant="filled"
                     sx={{ width: '100%' }}>
                     {message}

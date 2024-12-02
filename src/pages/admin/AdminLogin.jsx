@@ -1,6 +1,6 @@
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { Button, Container, IconButton, InputAdornment, Paper, TextField, Typography } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { server } from "../../main";
@@ -16,6 +16,14 @@ const AdminLogin = () => {
     const [showPassword, setShowPassword] = useState(false);
 
 
+    // Check if token exists in localStorage when component mounts
+    useEffect(() => {
+        const token = localStorage.getItem("admin-token");
+        if (token) {
+            // Redirect to dashboard if token exists
+            navigate("/admin/dashboard");
+        }
+    }, [navigate]);
 
 
     const handleLogin = async (e) => {
@@ -26,16 +34,18 @@ const AdminLogin = () => {
             const { data } = await axios.post(`${server}/admin/verify`, { secretKey }, { withCredentials: true });
 
             if (data.success) {
-                toast.success("Login successful, Welcome Admin!"); // Show success toast
+                // Store token in localStorage
+                localStorage.setItem("admin-token", data.token);
+
+                toast.success("Login successful, Welcome Admin!");
                 navigate("/admin/dashboard");
-            } 
+            }
         } catch (error) {
             toast.error(error?.response?.data?.message || "Invalid Admin Key");
         } finally {
             setLoading(false);
         }
     };
-
 
 
 
