@@ -5,26 +5,32 @@ import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { server } from "../../main";
 import toast from "react-hot-toast";
-
-
+import Cookies from "js-cookie"; // You need to install js-cookie
 
 const AdminLogin = () => {
     const navigate = useNavigate();
     const [secretKey, setSecretKey] = useState("");
     const [loading, setLoading] = useState(false);
-
     const [showPassword, setShowPassword] = useState(false);
 
+    
 
-    // Check if token exists in localStorage when component mounts
+
+    const logout = () => {
+        localStorage.removeItem("admin-token");
+        localStorage.removeItem("token-expiration");
+        Cookies.remove("admin-token");
+        // toast.success("Logged out successfully");
+        navigate("/admin");
+    };
+
     useEffect(() => {
-        const token = localStorage.getItem("admin-token");
+        const token = localStorage.getItem("admin-token") || Cookies.get("admin-token");
+
         if (token) {
-            // Redirect to dashboard if token exists
             navigate("/admin/dashboard");
         }
     }, [navigate]);
-
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -34,11 +40,17 @@ const AdminLogin = () => {
             const { data } = await axios.post(`${server}/admin/verify`, { secretKey }, { withCredentials: true });
 
             if (data.success) {
-                // Store token in localStorage
+                const expirationTime = new Date().getTime() + 60 * 1000; // Token expires in 1 minute
+                // Store token and expiration time in both cookies and localStorage
+                Cookies.set("admin-token", data.token, { expires: 1 / 1440 }); // 1 minute expiration
                 localStorage.setItem("admin-token", data.token);
+                localStorage.setItem("token-expiration", expirationTime);
 
                 toast.success("Login successful, Welcome Admin!");
                 navigate("/admin/dashboard");
+
+                // Set a timeout to log the user out when the token expires
+                setTimeout(logout, expirationTime - new Date().getTime());
             }
         } catch (error) {
             toast.error(error?.response?.data?.message || "Invalid Admin Key");
@@ -46,8 +58,6 @@ const AdminLogin = () => {
             setLoading(false);
         }
     };
-
-
 
     const handleTogglePassword = () => {
         setShowPassword(!showPassword);
@@ -108,14 +118,12 @@ const AdminLogin = () => {
                         color="primary"
                         type="submit"
                         fullWidth
-
                         disabled={loading}
                     >
                         {loading ? "Logging in..." : "Login"}
                     </Button>
                 </form>
             </Paper>
-
         </Container>
     );
 };

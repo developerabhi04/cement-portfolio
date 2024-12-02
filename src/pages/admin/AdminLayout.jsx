@@ -1,11 +1,12 @@
 import { Close as CloseIcon, Dashboard, ExitToApp as ExitToAppIcon, ImportExport, Menu as MenuIcon, Message } from "@mui/icons-material";
 import { Box, Drawer, Grid, IconButton, Stack, styled, Typography } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link as LinkComponent, useLocation, useNavigate } from "react-router-dom";
 import { matBlack } from "./constants/color";
 import { server } from "../../main"
 import axios from "axios";
 import toast from "react-hot-toast";
+
 
 
 const Link = styled(LinkComponent)`
@@ -38,17 +39,62 @@ const adminTabs = [
 
 
 const AdminLayout = ({ children }) => {
-
-
     const [isMobile, setIsMobile] = useState(false);
+    const navigate = useNavigate();
 
     const handleMobile = () => setIsMobile(!isMobile);
-
     const handleClose = () => setIsMobile(false);
+
+
 
     // if (!isAdmin) return <Navigate to={"/admin"} />
 
+    // Automatically logout if the token is expired
+    useEffect(() => {
+        const checkTokenExpiration = () => {
+            const expirationTime = localStorage.getItem("token-expiration");
+            const currentTime = new Date().getTime();
 
+            // If token is expired
+            if (expirationTime && currentTime >= expirationTime) {
+                toast.error("Your session has expired. Please log in again.");
+                logout(true); // Pass true to avoid the "Logged out successfully" message
+            }
+        };
+
+        // Check expiration immediately when the component mounts
+        checkTokenExpiration();
+
+        // Check every 30 seconds for token expiration without refresh
+        const intervalId = setInterval(checkTokenExpiration, 30000); // Adjust the interval as needed
+
+        // Clear the interval when the component unmounts
+        return () => {
+            clearInterval(intervalId);
+        };
+    }, [navigate]);
+
+    const logout = async (isExpired = false) => {
+        try {
+            // Call the backend logout API to clear any server-side session
+            await axios.get(`${server}/admin/logout`, { withCredentials: true });
+
+            // Remove token from localStorage and cookies
+            localStorage.removeItem("admin-token");
+            localStorage.removeItem("token-expiration");
+
+            // Only show "Logged out successfully" if it's not a session expiration
+            if (!isExpired) {
+                toast.success("Logged out successfully");
+            }
+
+            // Redirect to login
+            navigate("/admin");
+        } catch (error) {
+            console.error("Error logging out:", error);
+            toast.error("Failed to log out. Please try again.");
+        }
+    };
 
     return (
         <Grid container minHeight={"100vh"}>
@@ -93,12 +139,12 @@ const Sidebar = ({ w = "100%" }) => {
         try {
             await axios.get(`${server}/admin/logout`, { withCredentials: true });
             localStorage.removeItem("admin-token");
-            toast.success("Logged out successfully"); // Show success toast
+            localStorage.removeItem("token-expiration");
+            toast.success("Logged out successfully");
             navigate("/admin");
-
         } catch (error) {
-            console.error(error)
-            toast.error("Failed to log out"); // Show error toast
+            console.error("Error logging out:", error);
+            toast.error("Failed to log out");
         }
     };
 
