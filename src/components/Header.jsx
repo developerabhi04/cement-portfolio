@@ -31,7 +31,10 @@ const Header = () => {
     return (
         <nav className={`header ${scrolled ? "sticky-header" : ""}`}>
             <div className="logo">
-                <img src={logo} alt="logo" />
+                
+                <Link to={"/"}>
+                    <img src={logo} alt="logo" />
+                </Link>
             </div>
 
             <div className="right">

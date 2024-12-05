@@ -12,8 +12,10 @@
         width: 35%;
         display: flex;
 
-        >img {
-            width: 300px;
+        >a {
+            >img {
+                width: 300px;
+            }
         }
     }
 
