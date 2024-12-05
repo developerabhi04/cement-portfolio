@@ -77,7 +77,7 @@
 
             i {
                 margin-right: 10px;
-                color:#007DFF;
+                color: #007DFF;
             }
         }
     }
@@ -101,23 +101,43 @@
         .footer-container {
             grid-template-columns: 1fr 1fr;
             gap: 20px;
+
+            .footer-logo {
+                // text-align: center;
+                margin-bottom: 20px;
+
+                >h2 {
+                    font-size: 1.5rem;
+                }
+
+                >p {
+                    font-size: 0.8rem;
+                }
+            }
+
+            .footer-links {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+                justify-items: center;
+
+                .footer-links-section {
+
+                    >h3 {
+                        font-size: 1.1rem;
+                    }
+
+                    >ul {
+
+                        >li {
+                            font-size: 0.8rem;
+                        }
+                    }
+
+                }
+            }
         }
 
-        .footer-logo {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .footer-links {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            justify-items: center;
-        }
-
-        .footer-contact {
-            text-align: center;
-        }
     }
 
     /* Mobile screens */
@@ -125,10 +145,20 @@
         .footer-container {
             grid-template-columns: 1fr;
             gap: 20px;
-        }
 
-        .footer-logo {
-            text-align: center;
+            .footer-logo {
+                text-align: center;
+
+                >h2 {
+                    font-size: 1rem;
+                }
+
+                >p {
+                    font-size: 0.7rem;
+                }
+            }
+
+
         }
 
         .footer-links {
@@ -136,10 +166,32 @@
             grid-template-columns: 1fr;
             gap: 15px;
             justify-items: center;
+
+
+            .footer-links-section {
+
+                >h3 {
+                    font-size: 0.8rem;
+                }
+
+                >ul {
+
+                    >li {
+                        font-size: 0.8rem;
+                    }
+                }
+
+            }
+
         }
 
-        .footer-contact {
-            text-align: center;
+        .footer-bottom {
+            font-size: 0.7rem;
         }
+
+
+
+
+
     }
 }

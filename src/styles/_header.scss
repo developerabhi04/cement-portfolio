@@ -190,7 +190,10 @@
                     display: block;
                     padding: 1rem;
                     border-bottom: 1px solid #ccc;
+
                 }
+
+
             }
 
             >div {
@@ -218,8 +221,8 @@
             width: 100%;
             text-align: center;
 
-            >img {
-                width: 150px;
+            img {
+                max-width: 220px;
             }
         }
 
@@ -239,6 +242,7 @@
                 width: 100%;
                 background-color: #fff;
                 text-align: center;
+                z-index: 100;
 
                 li {
                     display: block;
@@ -274,8 +278,8 @@
             width: 100%;
             text-align: center;
 
-            >img {
-                width: 120px;
+            img {
+                max-width: 220px;
             }
         }
 
@@ -290,11 +294,12 @@
             .center.show-mobile-menu {
                 display: block;
                 position: absolute;
-                top: 3.7rem;
+                top: 4.7rem;
                 left: 0;
                 width: 100%;
                 background-color: #fff;
                 text-align: center;
+                z-index: 100;
 
                 li {
                     display: block;
