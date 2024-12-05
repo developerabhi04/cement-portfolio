@@ -36,7 +36,9 @@ const Header = () => {
 
             <div className="right">
                 <ul className={`center ${showMobileMenu ? "show-mobile-menu" : ""}`}>
-                    <li>Home</li>
+                    <li>
+                        <Link to={"/"}>Home</Link>
+                    </li>
                     <li>
                         <LinkScroll
                             to="about"

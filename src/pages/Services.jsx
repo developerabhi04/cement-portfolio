@@ -6,7 +6,7 @@ const Services = () => {
         <section className="constructions-containers" id="services">
             <div className="construction-header">
                 <p>Services</p>
-                <h2>High Performance Services For Multiple Industries!</h2>
+                <h2>Top-Quality Services Across Diverse Industries!</h2>
             </div>
 
             {/* 6 Cards */}
@@ -18,9 +18,8 @@ const Services = () => {
                     <div className="card-content">
                         <h3>Concrete Mix Supply</h3>
                         <p>
-                            When it comes to large-scale construction projects, we understand the
-                            significance of a seamless and efficient procurement process. NonTradeCement.org
-                            offers a hassle-free and reliable solution for all your cement bulk order requirements.
+                            For large-scale construction projects, we recognize the importance of an efficient and smooth procurement process.
+                            NonTradeCement.org provides a reliable, hassle-free solution to fulfill all your bulk cement ordering needs.
                         </p>
                     </div>
                 </div>

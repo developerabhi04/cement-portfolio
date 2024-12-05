@@ -10,12 +10,10 @@ const AboutUs = () => {
                 </div>
                 <div className="content">
                     <h2>About Us</h2>
-                    <h2>Concerted Efforts To Build Better.</h2>
+                    <h2>Unified Efforts for Stronger Foundations</h2>
                     <p>
-                        High-quality cement designed to last for years. Durable and strong,
-                        perfect for construction projects of any size. Low shrinkage rate,
-                        ensuring a more stable structure. High-strength cement offers superior
-                        durability and stability.
+                        Premium-grade cement built for long-lasting performance. Strong and durable, ideal for projects of all sizes. With a low shrinkage rate,
+                        it ensures enhanced stability and structure. Our high-strength cement provides exceptional durability and reliability.
                     </p>
                     <a href="tel:918910503006">
                         <button>

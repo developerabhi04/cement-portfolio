@@ -17,7 +17,7 @@ const Home = () => {
           </div>
 
           <div className="description-section">
-            <p>Discover the epitome of strength and reliability with Adani Group Cement Nontrade Cement, where innovation meets tradition, and every structure embodies the essence of endurance.</p>
+            <p>Experience Unmatched Durability and Trust with Our Premium Cement — Where Modern Engineering and Time-Honored Quality Combine to Build Lasting Foundations</p>
           </div>
 
           <div className="button-section">

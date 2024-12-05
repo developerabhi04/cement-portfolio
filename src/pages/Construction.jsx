@@ -5,7 +5,7 @@ const Construction = () => {
   return (
     <section className="construction-container">
       <div className="construction-header">
-        <h2>Cement Construction Services</h2>
+        <h2>Reliable Cement Services</h2>
       </div>
 
       {/* 3 Cards */}
@@ -15,11 +15,10 @@ const Construction = () => {
             <img src={img1} alt="Concrete Mix Supply Logo" />
           </figure>
           <div className="card-content">
-            <h3>Concrete Mix Supply</h3>
+            <h3>Premium Concrete Mix Supply</h3>
             <p>
-              When it comes to large-scale construction projects, we understand the
-              significance of a seamless and efficient procurement process. NonTradeCement.org
-              offers a hassle-free and reliable solution for all your cement bulk order requirements.
+              For large-scale projects, we understand the need for an efficient procurement process.
+              We offers a reliable solution for all your bulk cement needs, ensuring a smooth experience from start to finish.
             </p>
           </div>
         </div>
@@ -29,11 +28,9 @@ const Construction = () => {
             <img src={img1} alt="Cement Franchisee Logo" />
           </figure>
           <div className="card-content">
-            <h3>Cement Franchisee</h3>
+            <h3>Cement Business Franchise</h3>
             <p>
-              Welcome to the NonTradeCement.org Franchisee Program, where opportunity meets
-              excellence. Are you ready to step into the world of construction materials
-              and build a thriving business?
+              Join our Franchisee Program, where success meets opportunity. Enter the thriving construction materials market and build a prosperous business with our trusted support.
             </p>
           </div>
         </div>
@@ -45,8 +42,8 @@ const Construction = () => {
           <div className="card-content">
             <h3>Wholesale Cement Suppliers</h3>
             <p>
-              Welcome to NonTradeCement.org Cement Dealership Program – a platform that opens doors to
-              lucrative business opportunities in the dynamic construction materials industry.
+              Join the NonTradeCement.org Cement Dealership Program – an exclusive opportunity to tap into the growing
+              construction materials market and build a successful business.
             </p>
           </div>
         </div>

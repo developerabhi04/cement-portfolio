@@ -15,24 +15,23 @@ const Solution = () => {
         <section className="solution-container">
             <div className="content">
                 <p>Why Us</p>
-                <h2>Get A Solution For All Industries</h2>
+                <h2>Solutions for All Industries</h2>
                 <ul>
                     <li>
                         <span><Done /></span>
-                        <span>Experience You Can Trust</span>
+                        <span>Reliable Expertise</span>
                     </li>
                     <li>
                         <span><Done /></span>
-                        <span>Quality Craftsmanship</span>
-                    </li>
-
-                    <li>
-                        <span><Done /></span>
-                        <span>100% Satisfaction Guarantee</span>
+                        <span>Superior Craftsmanship</span>
                     </li>
                     <li>
                         <span><Done /></span>
-                        <span>Accurate Testing Processes</span>
+                        <span>Guaranteed Satisfaction</span>
+                    </li>
+                    <li>
+                        <span><Done /></span>
+                        <span>Precise Testing Methods</span>
                     </li>
                 </ul>
 
@@ -58,7 +57,7 @@ const Faq = ({ activeTab, toggleTab }) => {
                     </button>
                     <div className={`faq-answer ${activeTab === 1 ? "active" : ""}`}>
                         <p>
-                            If you re not satisfied with your purchase, we accept returns within 30 days of delivery.
+                            If you're not satisfied with your purchase, we accept returns within 30 days of delivery.
                         </p>
                     </div>
                 </div>
@@ -70,7 +69,7 @@ const Faq = ({ activeTab, toggleTab }) => {
                     </button>
                     <div className={`faq-answer ${activeTab === 2 ? "active" : ""}`}>
                         <p>
-                            Requesting a quote is easy. Simply navigate to our “Contact Us” page, fill out the form, and provide project details. We’ll get back to you promptly with a customized quote.
+                            Requesting a quote is easy. Just visit our “Contact Us” page, fill out the form with your project details, and we'll provide a personalized quote promptly.
                         </p>
                     </div>
                 </div>
@@ -82,13 +81,14 @@ const Faq = ({ activeTab, toggleTab }) => {
                     </button>
                     <div className={`faq-answer ${activeTab === 3 ? "active" : ""}`}>
                         <p>
-                            Yes, we are fully licensed and insured to provide cement contracting services. We prioritize safety and compliance, ensuring that your project is in capable hands.
+                            Yes, we are fully licensed and insured to provide cement contracting services. We prioritize safety and compliance to ensure your project is handled with care and professionalism.
                         </p>
                     </div>
                 </div>
 
             </div>
         </div>
+
     );
 };
 
