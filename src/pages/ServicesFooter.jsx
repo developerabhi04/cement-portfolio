@@ -1,73 +1,100 @@
 import { Done, Phone } from "@mui/icons-material";
 
 
+const cementData = [
+    {
+        icon: <Done />,
+        title: "Best White cement",
+    },
+    {
+        icon: <Done />,
+        title: "Best Waterproof cement",
+    },
+    {
+        icon: <Done />,
+        title: "Best Cement suppliers",
+    },
+    {
+        icon: <Done />,
+        title: "Accurate Testing Processes",
+    },
+    {
+        icon: <Done />,
+        title: "Best Construction companies",
+    },
+    {
+        icon: <Done />,
+        title: "Buy cement online",
+    },
+    {
+        icon: <Done />,
+        title: "Cement online booking",
+    },
+    {
+        icon: <Done />,
+        title: "Best Cement agency",
+    },
+    {
+        icon: <Done />,
+        title: "Cement booking in bulk",
+    },
+]
+
+
+const cement = [
+    {
+        icon: <Done />,
+        title: "Best Birla white cement",
+    },
+    {
+        icon: <Done />,
+        title: "Best Cement price",
+    },
+    {
+        icon: <Done />,
+        title: "Best Bulk cement suppliers",
+    },
+    {
+        icon: <Done />,
+        title: "Best Cement agency dealership",
+    },
+
+]
+
+
+const headerMessage = [
+    "Find the best cement for home construction & build with Non trade cement, Indias No. 1 Cement. Never compromise on 3 things: Location, Contractor, & Cement. Visit now for more tips."
+]
+
+
+
+
 const ServicesFooter = () => {
     return (
         <section className="Services-Footer">
             <div>
                 <div>
-                    <h1>Find the best cement for home construction & build with Non trade cement, Indias No. 1 Cement. Never compromise on 3 things: Location, Contractor, & Cement. Visit now for more tips.</h1>
+                    <h1>{headerMessage}</h1>
                 </div>
 
                 <div>
                     <ul>
-                        <li>
-                            <span><Done /></span>
-                            <span>Best White cement</span>
-                        </li>
-                        <li>
-                            <span><Done /></span>
-                            <span>Best Waterproof cement</span>
-                        </li>
-
-                        <li>
-                            <span><Done /></span>
-                            <span>Best Cement suppliers</span>
-                        </li>
-                        <li>
-                            <span><Done /></span>
-                            <span>Accurate Testing Processes</span>
-                        </li>
-                        <li>
-                            <span><Done /></span>
-                            <span>Best Construction companies</span>
-                        </li>
-                        <li>
-                            <span><Done /></span>
-                            <span>Buy cement online</span>
-                        </li>
-                        <li>
-                            <span><Done /></span>
-                            <span>Cement online booking</span>
-                        </li>
-                        <li>
-                            <span><Done /></span>
-                            <span>Best Cement agency</span>
-                        </li>
-                        <li>
-                            <span><Done /></span>
-                            <span>Cement booking in bulk</span>
-                        </li>
+                        {cementData.map((cement, i) => (
+                            <li key={i}>
+                                <span>{cement.icon}</span>
+                                <span>{cement.title}</span>
+                            </li>
+                        ))}
                     </ul>
 
 
                     <ul>
-                        <li>
-                            <span><Done /></span>
-                            <span>Best Birla white cement</span>
-                        </li>
-                        <li>
-                            <span><Done /></span>
-                            <span> Best Cement price</span>
-                        </li>
-                        <li>
-                            <span><Done /></span>
-                            <span>Best Bulk cement suppliers</span>
-                        </li>
-                        <li>
-                            <span><Done /></span>
-                            <span>Best Cement agency dealership</span>
-                        </li>
+                        {cement.map((cement, i) => (
+                            <li key={i}>
+                                <span>{cement.icon}</span>
+                                <span>{cement.title}</span>
+                            </li>
+                        ))}
                     </ul>
 
 

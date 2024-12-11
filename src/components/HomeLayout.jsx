@@ -1,8 +1,7 @@
 import { lazy } from "react";
+import { Helmet } from "react-helmet-async";
 
 
-const Header = lazy(() => import("./Header"));
-const Footer = lazy(() => import("./Footer"));
 const Home = lazy(() => import("../pages/Home"));
 const Construction = lazy(() => import("../pages/Construction"));
 const Form = lazy(() => import("../pages/Form"));
@@ -19,7 +18,13 @@ const HomeLayout = () => {
 
     return (
         <>
-            <Header />
+            <Helmet>
+                <title>Home - Your Website Name</title>
+                <meta name="description" content="This is the home page." />
+                <meta name="keywords" content="home, awesome website, react, SEO" />
+                <link rel="canonical" href="https://demo.com" />
+            </Helmet>
+
             <FormPopup />
             <Home />
             <Construction />
@@ -30,7 +35,6 @@ const HomeLayout = () => {
             <LiveCount />
             <ServicesFooter />
             <UserOptions />
-            <Footer />
         </>
     );
 };

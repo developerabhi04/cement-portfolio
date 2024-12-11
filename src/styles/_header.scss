@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: row;
     width: 100%;
-    padding: 1rem 6.5rem;
+    padding: 0 6.5rem;
     box-shadow: 0 0 5px #cbc9c9;
     background-color: #FFFFFF;
     z-index: 99;
@@ -14,7 +14,7 @@
 
         >a {
             >img {
-                width: 300px;
+                width: 116px;
             }
         }
     }
@@ -159,13 +159,13 @@
 // Tablet (max-width: 1025px)
 @media (max-width: 1025px) {
     .header {
-        padding: 1rem 2rem;
+        padding: 0 2rem;
 
         .logo {
             width: 50%;
 
-            >img {
-                width: 200px;
+            img {
+                max-width: 95px;
             }
         }
 
@@ -215,14 +215,14 @@
 // Mobile (max-width: 768px)
 @media (max-width: 768px) {
     .header {
-        padding: 0.8rem 1.5rem;
+        padding: 0rem 1.5rem;
 
         .logo {
             width: 100%;
             text-align: center;
 
             img {
-                max-width: 220px;
+                max-width: 75px;
             }
         }
 
@@ -272,14 +272,14 @@
 // Small mobile (max-width: 480px)
 @media (max-width: 480px) {
     .header {
-        padding: 0.5rem 1rem;
+        padding: 0rem 1rem;
 
         .logo {
             width: 100%;
             text-align: center;
 
             img {
-                max-width: 220px;
+                max-width: 60px;
             }
         }
 

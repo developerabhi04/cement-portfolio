@@ -1,14 +1,18 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import { HelmetProvider } from "react-helmet-async";
 import "./styles/app.scss";
 import App from './App.jsx';
 
 
-export const server = "https://cement-backend-data.onrender.com/api/v1";
-// export const server = "http://localhost:4000/api/v1"
+// export const server = "https://cement-backend-data.onrender.com/api/v1";
+export const server = "http://localhost:4000/api/v1"
+
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App />
+    <HelmetProvider>
+      <App />
+    </HelmetProvider>
   </StrictMode>,
 )

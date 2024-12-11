@@ -1,10 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { lazy, Suspense} from "react";
+import { lazy, Suspense } from "react";
 import ProtectedRoute from "./auth/ProtectedRoute";
 import { Toaster } from "react-hot-toast";
-import Loaders from "./components/loader/Loaders";
-import Fals from "./components/Fals";
-
+import ChildrenOutlet from "./components/ChildrenOutlet";
+import { HelmetProvider } from 'react-helmet-async';
 
 
 // code spliting
@@ -20,53 +19,55 @@ const TermsConditions = lazy(() => import("./pages/TermCondition"));
 
 
 const App = () => {
-    return (
+  return (
     <>
-      <BrowserRouter>
-        <Suspense fallback={<Loaders />}>
-          <Routes>
-              <Route path="/" element={<HomeLayout />} />
+      <HelmetProvider>
+        <BrowserRouter>
+          <Suspense>
+            <Routes>
 
-
-              <Route element={<Fals />}>
+              <Route element={<ChildrenOutlet />}>
+                <Route path="/" element={<HomeLayout />} />
                 <Route path="/terms" element={<TermsConditions />} />
                 <Route path="/privacy" element={<PrivacyPolicy />} />
               </Route>
 
-            {/* admin */}
-            <Route path={"/admin"} element={<AdminLogin />} />
-            
-
-            {/* Protected Admin Routes */}
-            <Route path="/admin/dashboard"
-              element={
-                <ProtectedRoute>
-                  <Dashboard />
-                </ProtectedRoute>
-              }
-            />
-
-            <Route path="/admin/users-management"
-              element={
-                <ProtectedRoute>
-                  <UserManagement />
-                </ProtectedRoute>
-              }
-            />
-            <Route path="/admin/export-data"
-              element={
-                <ProtectedRoute>
-                  <ExportData />
-                </ProtectedRoute>
-              }
-            />
 
 
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Suspense>
-        <Toaster position="top-center" reverseOrder={false} toastOptions={{ duration: 5000 }} />
-      </BrowserRouter>
+              {/* admin */}
+              <Route path={"/admin"} element={<AdminLogin />} />
+
+              {/* Protected Admin Routes */}
+              <Route path="/admin/dashboard"
+                element={
+                  <ProtectedRoute>
+                    <Dashboard />
+                  </ProtectedRoute>
+                }
+              />
+
+              <Route path="/admin/users-management"
+                element={
+                  <ProtectedRoute>
+                    <UserManagement />
+                  </ProtectedRoute>
+                }
+              />
+              <Route path="/admin/export-data"
+                element={
+                  <ProtectedRoute>
+                    <ExportData />
+                  </ProtectedRoute>
+                }
+              />
+
+
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
+          <Toaster position="top-center" reverseOrder={false} toastOptions={{ duration: 5000 }} />
+        </BrowserRouter>
+      </HelmetProvider>
     </>
   )
 }

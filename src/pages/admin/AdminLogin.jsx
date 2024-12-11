@@ -13,7 +13,7 @@ const AdminLogin = () => {
     const [loading, setLoading] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
 
-    
+
 
 
     const logout = () => {
@@ -97,6 +97,7 @@ const AdminLogin = () => {
                         margin="normal"
                         variant="outlined"
                         value={secretKey}
+                        autoComplete="new-password"
                         onChange={(e) => setSecretKey(e.target.value)}
                         InputProps={{
                             endAdornment: (

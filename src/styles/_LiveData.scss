@@ -55,22 +55,12 @@
 
                 >span {
                     display: inline-block;
-                    transition: transform 0.5s ease, opacity 0.5s ease, color 0.5s ease;
                     font-size: 3.3rem;
                     font-weight: bold;
                     color: #2B6CB0;
                     position: relative;
                     opacity: 1;
 
-                    &.animate {
-                        opacity: 0.8;
-                        transform: scale(1.2);
-                        color: #2B6CB0;
-                    }
-
-                    &.added {
-                        animation: countUp 0.5s ease-in-out forwards;
-                    }
                 }
 
                 >span:nth-child(2) {

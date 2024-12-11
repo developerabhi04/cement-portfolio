@@ -1,6 +1,6 @@
 .section-banner {
     position: relative;
-    padding: 50px 0;
+    padding: 7rem 0;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -14,9 +14,14 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background:
-            linear-gradient(264deg, rgba(255, 255, 255, 0) 0%, #272727 100%),
-            url("../assets/banner.png") no-repeat center / cover;
+        background: linear-gradient(to bottom,
+                rgba(0, 0, 0, 0) 0%,
+                rgba(0, 0, 0, 0.5) 20%,
+                rgb(47 43 43 / 50%) 40%,
+                rgba(0, 0, 0, 0) 100%,
+            ),
+            url(/src/assets/banner.png) no-repeat center / cover;
+        background-blend-mode: overlay;
         z-index: 0; // Background layer
     }
 
@@ -42,7 +47,7 @@
             .heading-section {
                 h2 {
                     font-size: 2.5rem;
-                    margin-top: 3rem;
+                    // margin-top: 3rem;
 
                     @media (max-width: 768px) {
                         font-size: 2rem;

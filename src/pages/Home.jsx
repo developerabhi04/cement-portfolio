@@ -1,6 +1,13 @@
 import { Phone } from "@mui/icons-material";
 
 
+const Content = {
+  heading1: "Buy Cement Online | Cement Online booking | Cement booking in bulk",
+  heading2: "High Quality Non-Trade Cement",
+  para: "Experience Unmatched Durability and Trust with Our Premium Cement — Where Modern Engineering and Time-Honored Quality Combine to Build Lasting Foundations"
+};
+
+
 const Home = () => {
   return (
     <section className="section-banner" id="home">
@@ -9,15 +16,15 @@ const Home = () => {
       <div className="content-wrapper">
         <div className="content">
           <div className="heading-section">
-            <h2>Buy Cement Online | Cement Online booking | Cement booking in bulk</h2>
+            <h2>{Content.heading1}</h2>
           </div>
 
           <div className="subheading-section">
-            <h2>High Quality Non-Trade Cement</h2>
+            <h2>{Content.heading2}</h2>
           </div>
 
           <div className="description-section">
-            <p>Experience Unmatched Durability and Trust with Our Premium Cement — Where Modern Engineering and Time-Honored Quality Combine to Build Lasting Foundations</p>
+            <p>{Content.para}</p>
           </div>
 
           <div className="button-section">
