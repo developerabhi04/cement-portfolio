@@ -40,7 +40,7 @@ const AdminLogin = () => {
             const { data } = await axios.post(`${server}/admin/verify`, { secretKey }, { withCredentials: true });
 
             if (data.success) {
-                const expirationTime = new Date().getTime() + 60 * 1000; // Token expires in 1 minute
+                const expirationTime = new Date().getTime() + 1 * 60 * 1000; // Token expires in 1 minute
                 // Store token and expiration time in both cookies and localStorage
 
                 Cookies.set("admin-token", data.token, { expires: 1 / 1440 }); // 10 minute expiration
