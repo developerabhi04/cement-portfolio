@@ -80,7 +80,7 @@ const AdminLayout = ({ children }) => {
             await axios.get(`${server}/admin/logout`, { withCredentials: true });
 
             // Remove token from localStorage and cookies
-            localStorage.removeItem("admin-token");
+            localStorage.removeItem("Admin-Token");
             localStorage.removeItem("token-expiration");
 
             // Only show "Logged out successfully" if it's not a session expiration
@@ -138,7 +138,7 @@ const Sidebar = ({ w = "100%" }) => {
     const logoutHandler = async () => {
         try {
             await axios.get(`${server}/admin/logout`, { withCredentials: true });
-            localStorage.removeItem("admin-token");
+            localStorage.removeItem("Admin-Token");
             localStorage.removeItem("token-expiration");
             toast.success("Logged out successfully");
             navigate("/admin");

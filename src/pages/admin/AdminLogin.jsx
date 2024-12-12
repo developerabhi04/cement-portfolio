@@ -17,15 +17,15 @@ const AdminLogin = () => {
 
 
     const logout = () => {
-        localStorage.removeItem("admin-token");
+        localStorage.removeItem("Admin-Token");
         localStorage.removeItem("token-expiration");
-        Cookies.remove("admin-token");
+        Cookies.remove("Admin-Token");
         // toast.success("Logged out successfully");
         navigate("/admin");
     };
 
     useEffect(() => {
-        const token = localStorage.getItem("admin-token") || Cookies.get("admin-token");
+        const token = localStorage.getItem("Admin-Token") || Cookies.get("Admin-Token");
 
         if (token) {
             navigate("/admin/dashboard");
@@ -43,9 +43,9 @@ const AdminLogin = () => {
                 const expirationTime = new Date().getTime() + 1 * 60 * 1000; // Token expires in 1 minute
                 // Store token and expiration time in both cookies and localStorage
 
-                Cookies.set("admin-token", data.token, { expires: 1 / 1440 }); // 10 minute expiration
+                Cookies.set("Admin-Token", data.token, { expires: 1 / 1440 }); // 10 minute expiration
 
-                localStorage.setItem("admin-token", expirationTime);
+                localStorage.setItem("Admin-Token", expirationTime);
                 localStorage.setItem("token-expiration", expirationTime);
 
                 toast.success("Login successful, Welcome Admin!");
