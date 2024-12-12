@@ -180,11 +180,12 @@
             .center.show-mobile-menu {
                 display: block;
                 position: absolute;
-                top: 5.6rem;
+                top: 5.2rem;
                 left: 0;
                 width: 100%;
                 background-color: #fff;
                 text-align: center;
+                z-index: 100;
 
                 li {
                     display: block;
@@ -237,7 +238,7 @@
             .center.show-mobile-menu {
                 display: block;
                 position: absolute;
-                top: 4.8rem;
+                top: 4rem;
                 left: 0;
                 width: 100%;
                 background-color: #fff;
@@ -294,7 +295,7 @@
             .center.show-mobile-menu {
                 display: block;
                 position: absolute;
-                top: 4.7rem;
+                top: 3.4rem;
                 left: 0;
                 width: 100%;
                 background-color: #fff;
