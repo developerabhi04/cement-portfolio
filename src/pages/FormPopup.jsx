@@ -122,7 +122,7 @@ const FormPopup = () => {
             <Dialog open={showForm} onClose={null} scroll="body" fullWidth maxWidth="sm" >
 
                 <DialogTitleStyled>
-                    <Typography variant="h4" component="div">Cemstar - Supplies Cement Online Apply</Typography>
+                    <Typography variant="h4" textAlign="center" component="div">Cemstar - Supplies Cement Online Apply</Typography>
                     <IconButton edge="end" color="inherit" onClick={closeForm}>
                         <CloseIcon />
                     </IconButton>

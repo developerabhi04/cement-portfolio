@@ -134,8 +134,8 @@ const Form = () => {
     return (
         <FormContainer id="contact">
             {/* Center the heading */}
-            <Typography variant="h4" gutterBottom align="center" sx={{ marginBottom: "3rem", fontWeight: 600 }}>
-               Cemstar - Supplies Cement Online Apply
+            <Typography variant="h4" gutterBottom  textAlign="center" sx={{ marginBottom: "3rem", fontWeight: 600 }}>
+                Cemstar - Supplies Cement Online Apply
             </Typography>
 
             <form onSubmit={submitHandler}>
