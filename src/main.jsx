@@ -9,10 +9,31 @@ export const server = "https://cement-backend-data.onrender.com/api/v1";
 // export const server = "http://localhost:4000/api/v1"
 
 
-createRoot(document.getElementById('root')).render(
+const rootElement = document.getElementById('root');
+
+// Ensure we only create root once
+if (!rootElement) throw new Error('Root element not found');
+const root = createRoot(rootElement);
+
+root.render(
   <StrictMode>
     <HelmetProvider>
       <App />
     </HelmetProvider>
   </StrictMode>,
-)
+);
+
+
+
+
+
+
+
+
+// createRoot(document.getElementById('root')).render(
+//   <StrictMode>
+//     <HelmetProvider>
+//       <App />
+//     </HelmetProvider>
+//   </StrictMode>,
+// )

@@ -28,12 +28,12 @@ const HomeLayout = () => {
             <FormPopup />
             <Home />
             <Construction />
-            <Form />
             <AboutUs />
-            <Services />
             <Solution />
             <LiveCount />
+            <Services />
             <ServicesFooter />
+            <Form />
             <UserOptions />
         </>
     );

@@ -9,6 +9,7 @@ const FormContainer = styled('div')(({ theme }) => ({
     padding: theme.spacing(7),
     maxWidth: '700px',  // Limit the width
     margin: '0 auto',   // Center the form
+    marginBottom: "7rem",
     // padding: "49px 11px",
 }));
 
