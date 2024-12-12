@@ -4,68 +4,64 @@ import { Done, Phone } from "@mui/icons-material";
 const cementData = [
     {
         icon: <Done />,
-        title: "Best White cement",
+        title: "Premium Quality White Cement",
     },
     {
         icon: <Done />,
-        title: "Best Waterproof cement",
+        title: "Waterproof Cement for Stronger Structures",
     },
     {
         icon: <Done />,
-        title: "Best Cement suppliers",
+        title: "Reliable Cement Suppliers Across India",
     },
     {
         icon: <Done />,
-        title: "Accurate Testing Processes",
+        title: "Comprehensive Testing for Superior Quality",
     },
     {
         icon: <Done />,
-        title: "Best Construction companies",
+        title: "Top-Rated Construction Companies You Can Trust",
     },
     {
         icon: <Done />,
-        title: "Buy cement online",
+        title: "Order Cement Online with Ease",
     },
     {
         icon: <Done />,
-        title: "Cement online booking",
+        title: "Convenient Cement Booking Made Simple",
     },
     {
         icon: <Done />,
-        title: "Best Cement agency",
+        title: "Leading Cement Agencies for Your Needs",
     },
     {
         icon: <Done />,
-        title: "Cement booking in bulk",
+        title: "Bulk Cement Orders with Guaranteed Delivery",
     },
 ]
-
 
 const cement = [
     {
         icon: <Done />,
-        title: "Best Birla white cement",
+        title: "High-Performance Cemstar White Cement",
     },
     {
         icon: <Done />,
-        title: "Best Cement price",
+        title: "Affordable Cement Prices for Your Projects",
     },
     {
         icon: <Done />,
-        title: "Best Bulk cement suppliers",
+        title: "Trusted Bulk Cement Suppliers Nationwide",
     },
     {
         icon: <Done />,
-        title: "Best Cement agency dealership",
+        title: "Exclusive Cement Agency Deals and Partnerships",
     },
-
 ]
-
 
 const headerMessage = [
-    "Find the best cement for home construction & build with Cemstar Supplies cement, Indias No. 1 Cement. Never compromise on 3 things: Location, Contractor, & Cement. Visit now for more tips."
+    "Get the finest quality cement for your construction projects with Cemstar Supplies, India’s leading cement supplier. We emphasize on quality, reliable contractors, and the right location for all your building needs. Explore more today!"
 ]
-
 
 
 

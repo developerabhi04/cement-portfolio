@@ -1,10 +1,11 @@
 import { Phone } from "@mui/icons-material";
 
 
+
 const Content = {
-  heading1: "Buy Cement Online | Cement Online booking | Cement booking in bulk",
-  heading2: "High Quality CemStar Supplies Cement",
-  para: "Experience Unmatched Durability and Trust with Our Premium Cement — Where Modern Engineering and Time-Honored Quality Combine to Build Lasting Foundations"
+  heading1: "Order Cement Online | Bulk Cement Purchase | Easy Online Cement Booking",
+  heading2: "Premium Quality Cement from BuildPro Solutions",
+  para: "Discover the Perfect Blend of Strength and Durability with Our High-Grade Cement — Crafted to Meet the Demands of Modern Construction."
 };
 
 

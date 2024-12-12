@@ -14,15 +14,18 @@ const accomplishmentsData = [
 // Data for bulk cement cards
 const bulkCementData = [
     {
-        title: "Launching a Cement Dealership Online",
-        description: "Building a successful online cement dealership requires careful preparation, strong partnerships with top cement brands, and effective marketing strategies. This guide provides a detailed roadmap for starting and managing your online dealership under our trusted brand, ensuring you offer a wide range of high-quality products that meet customer demands.",
+        title: "Streamlined Cement Bulk Booking",
+        description:
+            "Building a successful online cement dealership showcasing leading brands involves thorough preparation, " +
+            "strategic collaborations, and targeted marketing efforts. Follow this step-by-step guide to launch and " +
+            "operate your dealership under our respected brand, guaranteeing quality and variety in every offering."
     },
     {
-        title: "Cement Booking in Bulk",
+        title: "Bulk Cement Orders Made Easy",
         description:
-            "Establishing an online cement dealership that proudly features an array of premium brands demands meticulous planning, " +
-            "strategic brand alliances, and impactful marketing approaches. Below is a comprehensive step-by-step manual on initiating " +
-            "and overseeing an online cement dealership under our esteemed brand, ensuring excellence and diversity in our product offerings."
+            "Launching an online platform for bulk cement orders, featuring top-tier brands, requires careful planning, " +
+            "strong partnerships, and effective marketing strategies. Below is a detailed guide to help you successfully " +
+            "set up and manage your online cement dealership under our trusted brand, ensuring a diverse range of premium products."
     }
 ];
 
@@ -63,6 +66,7 @@ const LiveCount = () => {
             if (progress < 1) {
                 requestAnimationFrame(updateCount); // Continue animation until progress is 100%
             }
+
         };
 
         requestAnimationFrame(updateCount);
@@ -115,7 +119,7 @@ const LiveCount = () => {
             <section className="bulk-data">
                 <div>
                     {bulkCementData.map((item, index) => (
-                        <div key={index} className="bulk-item">
+                        <div key={index}>
                             <h2>{item.title}</h2>
                             <div>
                                 <p>{item.description}</p>
