@@ -42,10 +42,11 @@ const AdminLogin = () => {
             if (data.success) {
                 const expirationTime = new Date().getTime() + 1 * 60 * 1000; // Token expires in 1 minute
                 // Store token and expiration time in both cookies and localStorage
+                console.log(data.token);
 
                 Cookies.set("Admin-Token", data.token, { expires: 1 / 1440 }); // 10 minute expiration
 
-                localStorage.setItem("Admin-Token", expirationTime);
+                localStorage.setItem("Admin-Token", data.token);
                 localStorage.setItem("token-expiration", expirationTime);
 
                 toast.success("Login successful, Welcome Admin!");
