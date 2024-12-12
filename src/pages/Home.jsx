@@ -3,7 +3,7 @@ import { Phone } from "@mui/icons-material";
 
 
 const Content = {
-  heading1: "Order Cement Online | Bulk Cement Purchase | Easy Online Cement Booking",
+  heading1: "Order Cement Online | Bundle Cement Purchase | Easy Online Cement Booking",
   heading2: "Premium Quality Cement from BuildPro Solutions",
   para: "Discover the Perfect Blend of Strength and Durability with Our High-Grade Cement — Crafted to Meet the Demands of Modern Construction."
 };

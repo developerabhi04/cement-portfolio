@@ -8,7 +8,7 @@ const Loaders = () => {
                     <Skeleton variant="rectangular" height={"100vh"} />
                 </Grid> */}
 
-                <Grid item md={5} sm={8} xs={12} lg={12} height={"100%"}>
+                <Grid item md={12} sm={12} xs={12} lg={12} height={"100%"}>
                     <Stack spacing={"1rem"}>
                         {Array.from({ length: 10 }).map((_, index) => (
                             <Skeleton key={index} variant="rounded" height={"5rem"} />
