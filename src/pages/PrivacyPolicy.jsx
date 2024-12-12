@@ -10,7 +10,7 @@ const PrivacyPolicy = () => {
     return (
         <>
             <Helmet>
-                <title>Privacy Policy | Your Website Name</title>
+                <title>Privacy Policy | Cemstar Supplies</title>
                 <meta name="description" content="Learn more about our privacy policy, how we handle user data, and how we protect your personal information." />
                 <meta name="keywords" content="privacy, policy, data protection, personal information" />
             </Helmet>
@@ -67,26 +67,31 @@ const PrivacyPolicy = () => {
                         </p>
                     </section>
 
-                    <section className="section">
-                        <h2 className="section-title">6. Your Rights</h2>
-                        <p className="section-content">
-                            You have the right to access, modify, or delete your personal data. Contact us at{' '}
-                            <a href="mailto:contact@nontradecement.org" className="email-link">contact@nontradecement.org</a> for requests.
-                        </p>
-                    </section>
 
                     <section className="section">
-                        <h2 className="section-title">7. Changes to This Privacy Policy</h2>
+                        <h2 className="section-title">6. Changes to This Privacy Policy</h2>
                         <p className="section-content">
                             We may update this privacy policy. Changes will be posted here with the date of the revision.
                         </p>
                     </section>
 
                     <section className="section">
-                        <h2 className="section-title">8. Contact Us</h2>
+                        <h2 className="section-title">7. Contact Us</h2>
                         <p className="section-content">
                             If you have questions, contact us at{' '}
-                            <a href="mailto:contact@nontradecement.org" className="email-link">contact@nontradecement.org</a>.
+                            <a className="email-link">
+                                <br></br>
+                                805 A, 8th Floor, 349 Business Point,
+                                <br></br>
+                                Opp. Western Express Highway Metro Station,
+                                <br></br>
+                                Western Express Highway, Andheri (East),
+                                <br></br>
+                                Mumbai 400 069.
+                                <br></br>
+                                Phone: +91 8910 503006
+                            </a>.
+
                         </p>
                     </section>
                 </div>

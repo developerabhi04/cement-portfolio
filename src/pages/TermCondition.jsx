@@ -9,7 +9,7 @@ const TermsConditions = () => {
     return (
         <>
             <Helmet>
-                <title>Terms and Conditions | Your Website Name</title>
+                <title>Terms and Conditions | Cemstar Supplies</title>
                 <meta name="description" content="Read the terms and conditions of our website, which outline the rules and regulations for using our services." />
                 <meta name="keywords" content="terms, conditions, website, rules, regulations" />
             </Helmet>
@@ -38,53 +38,58 @@ const TermsConditions = () => {
                         </p>
                     </section>
 
-                    <section className="section">
-                        <h2 className="section-title">3. Account Registration</h2>
-                        <p className="section-content">
-                            If you register for an account, you are responsible for keeping your login credentials secure and up-to-date.
-                        </p>
-                    </section>
 
                     <section className="section">
-                        <h2 className="section-title">4. Intellectual Property</h2>
+                        <h2 className="section-title">3. Intellectual Property</h2>
                         <p className="section-content">
                             All content on this website is owned by us and protected by intellectual property laws.
                         </p>
                     </section>
 
                     <section className="section">
-                        <h2 className="section-title">5. Limitation of Liability</h2>
+                        <h2 className="section-title">4. Limitation of Liability</h2>
                         <p className="section-content">
                             We are not responsible for any damages arising from the use of our website or services.
                         </p>
                     </section>
 
                     <section className="section">
-                        <h2 className="section-title">6. Termination</h2>
+                        <h2 className="section-title">5. Termination</h2>
                         <p className="section-content">
                             We reserve the right to suspend or terminate your access if we believe you have violated these terms.
                         </p>
                     </section>
 
                     <section className="section">
-                        <h2 className="section-title">7. Changes to Terms and Conditions</h2>
+                        <h2 className="section-title">6. Changes to Terms and Conditions</h2>
                         <p className="section-content">
                             We may update these terms from time to time. Changes will be posted on this page.
                         </p>
                     </section>
 
                     <section className="section">
-                        <h2 className="section-title">8. Governing Law</h2>
+                        <h2 className="section-title">7. Governing Law</h2>
                         <p className="section-content">
-                            These terms will be governed by the laws of [Your Country]. Any disputes will be resolved in the courts of [Your Country].
+                            These terms will be governed by the laws of [INDIA]. Any disputes will be resolved in the courts of [INDIA].
                         </p>
                     </section>
 
                     <section className="section">
-                        <h2 className="section-title">9. Contact Us</h2>
+                        <h2 className="section-title">8. Contact Us</h2>
                         <p className="section-content">
                             For any inquiries, contact us at{' '}
-                            <a href="mailto:contact@nontradecement.org" className="email-link">contact@nontradecement.org</a>.
+                            <a className="email-link">
+                                <br></br>
+                                805 A, 8th Floor, 349 Business Point,
+                                <br></br>
+                                Opp. Western Express Highway Metro Station,
+                                <br></br>
+                                Western Express Highway, Andheri (East),
+                                <br></br>
+                                Mumbai 400 069.
+                                <br></br>
+                                Phone: +91 8910 503006
+                            </a>.
                         </p>
                     </section>
                 </div>

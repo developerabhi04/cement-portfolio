@@ -63,7 +63,7 @@ const cement = [
 
 
 const headerMessage = [
-    "Find the best cement for home construction & build with Non trade cement, Indias No. 1 Cement. Never compromise on 3 things: Location, Contractor, & Cement. Visit now for more tips."
+    "Find the best cement for home construction & build with Cemstar Supplies cement, Indias No. 1 Cement. Never compromise on 3 things: Location, Contractor, & Cement. Visit now for more tips."
 ]
 
 

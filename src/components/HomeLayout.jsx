@@ -19,7 +19,7 @@ const HomeLayout = () => {
     return (
         <>
             <Helmet>
-                <title>Home - Your Website Name</title>
+                <title>Home - Cemstar Supplies</title>
                 <meta name="description" content="This is the home page." />
                 <meta name="keywords" content="home, awesome website, react, SEO" />
                 <link rel="canonical" href="https://demo.com" />

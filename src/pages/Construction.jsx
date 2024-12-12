@@ -18,7 +18,7 @@ const services = [
   {
     src: img3,
     heading: "Wholesale Cement Suppliers",
-    paragraph: "Join the NonTradeCement.org Cement Dealership Program – an exclusive opportunity to tap into the growing construction materials market and build a successful business.",
+    paragraph: "Join the CemStar Supplies Cement Dealership Program – an exclusive opportunity to tap into the growing construction materials market and build a successful business.",
   },
 ]
 

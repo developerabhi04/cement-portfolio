@@ -29,11 +29,11 @@ const faqData = [
         answer: "If you're not satisfied with your purchase, we accept returns within 30 days of delivery."
     },
     {
-        question: "How do I request a quote for my non-trade cement project?",
+        question: "How do I request a quote for my Cemstar cement project?",
         answer: "Requesting a quote is easy. Just visit our 'Contact Us' page, fill out the form with your project details, and we'll provide a personalized quote promptly."
     },
     {
-        question: "Are you licensed and insured for non-trade cement work?",
+        question: "Are you licensed and insured for Cemstar cement work?",
         answer: "Yes, we are fully licensed and insured to provide cement contracting services. We prioritize safety and compliance to ensure your project is handled with care and professionalism."
     },
 ];

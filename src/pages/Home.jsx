@@ -3,7 +3,7 @@ import { Phone } from "@mui/icons-material";
 
 const Content = {
   heading1: "Buy Cement Online | Cement Online booking | Cement booking in bulk",
-  heading2: "High Quality Non-Trade Cement",
+  heading2: "High Quality CemStar Supplies Cement",
   para: "Experience Unmatched Durability and Trust with Our Premium Cement — Where Modern Engineering and Time-Honored Quality Combine to Build Lasting Foundations"
 };
 
