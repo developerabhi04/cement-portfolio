@@ -142,7 +142,6 @@ const Sidebar = ({ w = "100%" }) => {
             localStorage.removeItem("token-expiration");
 
             
-
             toast.success("Logged out successfully");
             navigate("/admin");
         } catch (error) {
