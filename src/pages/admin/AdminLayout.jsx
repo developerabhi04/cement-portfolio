@@ -140,6 +140,9 @@ const Sidebar = ({ w = "100%" }) => {
             await axios.get(`${server}/admin/logout`, { withCredentials: true });
             localStorage.removeItem("Admin-Token");
             localStorage.removeItem("token-expiration");
+
+            
+
             toast.success("Logged out successfully");
             navigate("/admin");
         } catch (error) {
