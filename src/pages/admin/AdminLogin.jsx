@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { server } from "../../main";
 import toast from "react-hot-toast";
-import Cookies from "js-cookie"; // You need to install js-cookie
 
 const AdminLogin = () => {
     const navigate = useNavigate();
