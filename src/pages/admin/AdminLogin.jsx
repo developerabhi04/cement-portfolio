@@ -1,6 +1,6 @@
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { Button, Container, IconButton, InputAdornment, Paper, TextField, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { server } from "../../main";
@@ -22,13 +22,6 @@ const AdminLogin = () => {
         navigate("/admin");
     };
 
-    useEffect(() => {
-        const token = localStorage.getItem("Admin-Token") 
-
-        if (token) {
-            navigate("/admin/dashboard");
-        }
-    }, [navigate]);
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -41,7 +34,7 @@ const AdminLogin = () => {
                 const expirationTime = new Date().getTime() + 1 * 60 * 1000; // Token expires in 1 minute
                 // Store token and expiration time in both cookies and localStorage
 
-                localStorage.setItem("Admin-Token", data.token);
+                localStorage.setItem("Admin-Token", expirationTime);
                 localStorage.setItem("token-expiration", expirationTime);
 
                 toast.success("Login successful, Welcome Admin!");
