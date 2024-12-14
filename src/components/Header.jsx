@@ -72,7 +72,7 @@ const Header = () => {
                 </ul>
 
                 <div>
-                    <Link to={"tel:918910503006"} className="call-now-btn">
+                    <Link to={"tel:919903075394"} className="call-now-btn">
                         CALL NOW
                     </Link>
                 </div>
