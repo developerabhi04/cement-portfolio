@@ -15,7 +15,7 @@ const ExportData = () => {
 
         const fetchUsers = async () => {
             try {
-                const response = await axios.get(`${server}/user/form`);  // Make sure this endpoint is correct
+                const response = await axios.get(`${server}/user/form`, { withCredentials: true });  // Make sure this endpoint is correct
                 setRows(response.data.users.map((user) => ({
                     ...user,
                     id: user._id,

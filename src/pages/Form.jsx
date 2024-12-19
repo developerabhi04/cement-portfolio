@@ -35,14 +35,64 @@ const Form = () => {
     const [state, setState] = useState("");
     const [pinCode, setPincode] = useState("");
 
+
+    // Validation errors
+    const [nameError, setNameError] = useState("");
+    const [contactNumberError, setContactNumberError] = useState("");
+    const [alternateNumberError, setAlternateNumberError] = useState("");
+    const [pinCodeError, setPinCodeError] = useState("");
+
     // 
     const [open, setOpen] = useState(false);
     const [message, setMessage] = useState('');
     const [severity, setSeverity] = useState("success");
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+
+    // Validation logic
+    const validateName = (value) => {
+        if (!value.trim()) return "Name is required";
+        if (value.length <= 2) return "Name must be at least 2 characters";
+        return "";
+    };
+
+    const validateContactNumber = (value) => {
+        if (!value) return "Contact number is required";
+        if (!/^\d{10}$/.test(value)) return "Contact number must be 10 digits";
+        return "";
+    };
+
+    const validateAlternateNumber = (value) => {
+        if (value && !/^\d{10}$/.test(value)) return "Alternate number must be 10 digits";
+        return "";
+    };
+
+    const validatePinCode = (value) => {
+        if (!value) return "Pin Code is required";
+        if (!/^\d{6}$/.test(value)) return "Pin Code must be 6 digits";
+        return "";
+    };
 
 
     const submitHandler = async (e) => {
         e.preventDefault();
+
+        // Final validation before submission
+        const nameError = validateName(name);
+        const contactNumberError = validateContactNumber(contactNumber);
+        const alternateNumberError = validateAlternateNumber(alternateNumber);
+        const pinCodeError = validatePinCode(pinCode);
+
+
+        if (nameError || contactNumberError || alternateNumberError || pinCodeError) {
+            setNameError(nameError);
+            setContactNumberError(contactNumberError);
+            setAlternateNumberError(alternateNumberError);
+            setPinCodeError(pinCodeError);
+            return;
+        }
+
+
 
         const formData = {
             name,
@@ -54,6 +104,8 @@ const Form = () => {
             state,
             pinCode,
         };
+
+        setIsSubmitting(true);
 
         try {
 
@@ -134,7 +186,7 @@ const Form = () => {
     return (
         <FormContainer id="contact">
             {/* Center the heading */}
-            <Typography variant="h4" gutterBottom  textAlign="center" sx={{ marginBottom: "3rem", fontWeight: 600 }}>
+            <Typography variant="h4" gutterBottom textAlign="center" sx={{ marginBottom: "3rem", fontWeight: 600 }}>
                 Cemstar - Supplies Cement Online Apply
             </Typography>
 
@@ -154,7 +206,12 @@ const Form = () => {
                                 '& .MuiFormLabel-asterisk': { color: 'red' }
                             }}
                             value={name}
-                            onChange={(e) => setName(e.target.value)}
+                            onChange={(e) => {
+                                setName(e.target.value);
+                                setNameError(validateName(e.target.value));
+                            }}
+                            error={!!nameError}
+                            helperText={nameError}
                         />
                     </Grid>
 
@@ -173,7 +230,12 @@ const Form = () => {
                                 '& .MuiFormLabel-asterisk': { color: 'red' }
                             }}
                             value={contactNumber}
-                            onChange={(e) => setContactNumber(e.target.value)}
+                            onChange={(e) => {
+                                setContactNumber(e.target.value);
+                                setContactNumberError(validateContactNumber(e.target.value));
+                            }}
+                            error={!!contactNumberError}
+                            helperText={contactNumberError}
                         />
                     </Grid>
                     <Grid item xs={12} sm={6}>
@@ -190,7 +252,12 @@ const Form = () => {
                                 '& .MuiFormLabel-asterisk': { color: 'red' }
                             }}
                             value={alternateNumber}
-                            onChange={(e) => setAlternateNumber(e.target.value)}
+                            onChange={(e) => {
+                                setAlternateNumber(e.target.value)
+                                setAlternateNumberError(validateAlternateNumber(e.target.value));
+                            }}
+                            error={!!alternateNumberError}
+                            helperText={alternateNumberError}
                         />
                     </Grid>
                     <Grid item xs={12} sm={6}>
@@ -277,12 +344,17 @@ const Form = () => {
                                 '& .MuiFormLabel-asterisk': { color: 'red' }
                             }}
                             value={pinCode}
-                            onChange={(e) => setPincode(e.target.value)}
+                            onChange={(e) => {
+                                setPincode(e.target.value);
+                                setPinCodeError(validatePinCode(e.target.value));
+                            }}
+                            error={!!pinCodeError}
+                            helperText={pinCodeError}
                         />
                     </Grid>
                 </Grid>
-                <SubmitButton type="submit" variant="contained">
-                    Send Now
+                <SubmitButton type="submit" variant="contained" disabled={isSubmitting}>
+                    {isSubmitting ? "Submitting..." : "Send Now"}
                 </SubmitButton>
             </form>
 

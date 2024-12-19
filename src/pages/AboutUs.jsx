@@ -27,7 +27,7 @@ const AboutUs = () => {
                         <h2>About Us</h2>
                         <h2>{content.heading}</h2>
                         <p>{content.para}</p>
-                        <a href="tel:918910503006">
+                        <a href="tel:919903075394">
                             <button>
                                 <Phone />
                                 Call Now

@@ -1,11 +1,10 @@
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { Button, Container, IconButton, InputAdornment, Paper, TextField, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { server } from "../../main";
 import toast from "react-hot-toast";
-import Cookies from "js-cookie"; // You need to install js-cookie
 
 const AdminLogin = () => {
     const navigate = useNavigate();
@@ -19,18 +18,10 @@ const AdminLogin = () => {
     const logout = () => {
         localStorage.removeItem("Admin-Token");
         localStorage.removeItem("token-expiration");
-        Cookies.remove("Admin-Token");
         // toast.success("Logged out successfully");
         navigate("/admin");
     };
 
-    useEffect(() => {
-        const token = localStorage.getItem("Admin-Token") || Cookies.get("Admin-Token");
-
-        if (token) {
-            navigate("/admin/dashboard");
-        }
-    }, [navigate]);
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -40,10 +31,8 @@ const AdminLogin = () => {
             const { data } = await axios.post(`${server}/admin/verify`, { secretKey }, { withCredentials: true });
 
             if (data.success) {
-                const expirationTime = new Date().getTime() + 1 * 60 * 1000; // Token expires in 1 minute
+                const expirationTime = new Date().getTime() + 10 * 24 * 60 * 60 * 1000;// Token expires in 30days
                 // Store token and expiration time in both cookies and localStorage
-
-                Cookies.set("Admin-Token", data.token, { expires: 1 / 1440 }); // 10 minute expiration
 
                 localStorage.setItem("Admin-Token", expirationTime);
                 localStorage.setItem("token-expiration", expirationTime);

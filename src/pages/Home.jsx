@@ -29,7 +29,7 @@ const Home = () => {
           </div>
 
           <div className="button-section">
-            <a href="tel:918910503006">
+            <a href="tel:919903075394">
               <button>
                 <Phone />
                 Call Now

@@ -1,9 +1,12 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
-import ProtectedRoute from "./auth/ProtectedRoute";
 import { Toaster } from "react-hot-toast";
 import ChildrenOutlet from "./components/ChildrenOutlet";
 import { HelmetProvider } from 'react-helmet-async';
+import AdminRouteGuard from "./auth/AdminRouteGuard";
+import ProtectedAdminRoute from "./auth/ProtectedAdminRoute";
+
+
 
 
 // code spliting
@@ -35,29 +38,33 @@ const App = () => {
 
 
               {/* admin */}
-              <Route path={"/admin"} element={<AdminLogin />} />
+              <Route path={"/admin"} element={
+                <AdminRouteGuard>
+                  <AdminLogin />
+                </AdminRouteGuard>
+              } />
 
               {/* Protected Admin Routes */}
               <Route path="/admin/dashboard"
                 element={
-                  <ProtectedRoute>
+                  <ProtectedAdminRoute>
                     <Dashboard />
-                  </ProtectedRoute>
+                  </ProtectedAdminRoute>
                 }
               />
 
               <Route path="/admin/users-management"
                 element={
-                  <ProtectedRoute>
+                  <ProtectedAdminRoute>
                     <UserManagement />
-                  </ProtectedRoute>
+                  </ProtectedAdminRoute>
                 }
               />
               <Route path="/admin/export-data"
                 element={
-                  <ProtectedRoute>
+                  <ProtectedAdminRoute>
                     <ExportData />
-                  </ProtectedRoute>
+                  </ProtectedAdminRoute>
                 }
               />
 

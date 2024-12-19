@@ -13,12 +13,14 @@ const Dashboard = () => {
         totalChatsCount: 0,
         messagesChart: []
     });
+    
 
     useEffect(() => {
         // Fetching the dashboard stats from backend
         const fetchStats = async () => {
             try {
                 const response = await axios.get(`${server}/admin/stats`, { withCredentials: true });
+                
                 if (response.data.success) {
                     setStats(response.data.stats); // Setting stats from backend response
                 }

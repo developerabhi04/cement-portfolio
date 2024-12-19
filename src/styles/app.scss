@@ -29,6 +29,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    // scroll-behavior: smooth;
 }
 
 a {
@@ -41,7 +42,6 @@ a {
 
 body {
     user-select: none;
-
 }
 
 .red {
@@ -56,9 +56,7 @@ body {
     color: rgb(0, 195, 0);
 }
 
-html {
-    scroll-behavior: smooth;
-}
+
 
 
 

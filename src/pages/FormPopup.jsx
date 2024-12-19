@@ -43,23 +43,67 @@ const FormPopup = () => {
     const [state, setState] = useState("");
     const [pinCode, setPincode] = useState("");
 
+
+    // Validation errors
+    const [nameError, setNameError] = useState("");
+    const [contactNumberError, setContactNumberError] = useState("");
+    const [alternateNumberError, setAlternateNumberError] = useState("");
+    const [pinCodeError, setPinCodeError] = useState("");
+
+
     // 
     const [open, setOpen] = useState(false);
     const [message, setMessage] = useState('');
     const [alertSeverity, setAlertSeverity] = useState('success');
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
-    useEffect(() => {
-        setShowForm(true); // Show form on load
-    }, []);
 
-    const closeForm = () => {
-        setShowForm(false);
+    // Validation logic
+    const validateName = (value) => {
+        if (!value.trim()) return "Name is required";
+        if (value.length <= 2) return "Name must be at least 2 characters";
+        return "";
     };
+
+    const validateContactNumber = (value) => {
+        if (!value) return "Contact number is required";
+        if (!/^\d{10}$/.test(value)) return "Contact number must be 10 digits";
+        return "";
+    };
+
+    const validateAlternateNumber = (value) => {
+        if (value && !/^\d{10}$/.test(value)) return "Alternate number must be 10 digits";
+        return "";
+    };
+
+    const validatePinCode = (value) => {
+        if (!value) return "Pin Code is required";
+        if (!/^\d{6}$/.test(value)) return "Pin Code must be 6 digits";
+        return "";
+    };
+
 
 
 
     const submitHandler = async (e) => {
         e.preventDefault();
+
+        // Final validation before submission
+        const nameError = validateName(name);
+        const contactNumberError = validateContactNumber(contactNumber);
+        const alternateNumberError = validateAlternateNumber(alternateNumber);
+        const pinCodeError = validatePinCode(pinCode);
+
+
+        if (nameError || contactNumberError || alternateNumberError || pinCodeError) {
+            setNameError(nameError);
+            setContactNumberError(contactNumberError);
+            setAlternateNumberError(alternateNumberError);
+            setPinCodeError(pinCodeError);
+            return;
+        }
+
+
 
         const formData = {
             name,
@@ -71,6 +115,8 @@ const FormPopup = () => {
             state,
             pinCode,
         };
+
+        setIsSubmitting(true);
 
         try {
             const response = await fetch(`${server}/user/submit`, {
@@ -116,6 +162,16 @@ const FormPopup = () => {
 
     }
 
+
+    useEffect(() => {
+        setShowForm(true); // Show form on load
+    }, []);
+
+    const closeForm = () => {
+        setShowForm(false);
+    };
+
+
     return (
         <>
             {/* Material-UI Dialog (Modal) */}
@@ -147,8 +203,12 @@ const FormPopup = () => {
                                         }
                                     }}
                                     value={name}
-                                    onChange={(e) => setName(e.target.value)}
-
+                                    onChange={(e) => {
+                                        setName(e.target.value);
+                                        setNameError(validateName(e.target.value));
+                                    }}
+                                    error={!!nameError}
+                                    helperText={nameError}
                                 />
                             </Grid>
 
@@ -169,7 +229,12 @@ const FormPopup = () => {
                                         }
                                     }}
                                     value={contactNumber}
-                                    onChange={(e) => setContactNumber(e.target.value)}
+                                    onChange={(e) => {
+                                        setContactNumber(e.target.value);
+                                        setContactNumberError(validateContactNumber(e.target.value));
+                                    }}
+                                    error={!!contactNumberError}
+                                    helperText={contactNumberError}
                                 />
                             </Grid>
 
@@ -189,7 +254,12 @@ const FormPopup = () => {
                                         }
                                     }}
                                     value={alternateNumber}
-                                    onChange={(e) => setAlternateNumber(e.target.value)}
+                                    onChange={(e) => {
+                                        setAlternateNumber(e.target.value)
+                                        setAlternateNumberError(validateAlternateNumber(e.target.value));
+                                    }}
+                                    error={!!alternateNumberError}
+                                    helperText={alternateNumberError}
                                 />
                             </Grid>
 
@@ -286,7 +356,12 @@ const FormPopup = () => {
                                         }
                                     }}
                                     value={pinCode}
-                                    onChange={(e) => setPincode(e.target.value)}
+                                    onChange={(e) => {
+                                        setPincode(e.target.value);
+                                        setPinCodeError(validatePinCode(e.target.value));
+                                    }}
+                                    error={!!pinCodeError}
+                                    helperText={pinCodeError}
                                 />
                             </Grid>
                         </Grid>
@@ -296,8 +371,9 @@ const FormPopup = () => {
                             <SubmitButton
                                 type="submit"
                                 variant="contained"
+                                disabled={isSubmitting}
                             >
-                                Send Now
+                                {isSubmitting ? "Submitting..." : "Send Now"}
                             </SubmitButton>
                         </DialogActions>
 
@@ -313,7 +389,7 @@ const FormPopup = () => {
                         <Alert
                             onClose={() => setOpen(false)}
                             // severity= "success"
-                            severity= {alertSeverity}
+                            severity={alertSeverity}
                             variant="filled"
                             sx={{ width: '100%' }}
                         >

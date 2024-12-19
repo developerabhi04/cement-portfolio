@@ -89,7 +89,7 @@ const PrivacyPolicy = () => {
                                 <br></br>
                                 Mumbai 400 069.
                                 <br></br>
-                                Phone: +91 8910 503006
+                                Phone: +91 9903 075394
                             </a>.
 
                         </p>
