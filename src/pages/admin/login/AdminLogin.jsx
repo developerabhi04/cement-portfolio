@@ -3,7 +3,7 @@ import { Button, Container, IconButton, InputAdornment, Paper, TextField, Typogr
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
-import { server } from "../../main";
+import { server } from "../../../server.js";
 import toast from "react-hot-toast";
 
 const AdminLogin = () => {

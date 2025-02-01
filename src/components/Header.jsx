@@ -1,12 +1,19 @@
 import { Link } from "react-router-dom";
 import { Link as LinkScroll } from "react-scroll";
-import logo from "../assets/adn.png";
 import { useEffect, useState } from "react";
 import { Close, Menu } from "@mui/icons-material";
+import axios from "axios";
+import toast from "react-hot-toast";
+import { server } from "../server.js";
+
 
 const Header = () => {
     const [showMobileMenu, setShowMobileMenu] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const [logos, setLogos] = useState([]);
+
+    // contact
+    const [contact, setContacts] = useState([]);
 
     const handleScroll = () => {
         const offset = window.scrollY;
@@ -28,13 +35,56 @@ const Header = () => {
         setShowMobileMenu((prev) => !prev);
     };
 
+
+    // Fetch all logos
+    const fetchLogos = async () => {
+        try {
+            const response = await axios.get(`${server}/logo/public/getlogo`);
+
+            setLogos(response.data.logos);
+            // console.log(response.data.logos);
+        } catch (error) {
+            console.error("Error fetching logos:", error);
+        }
+    };
+
+    useEffect(() => {
+        fetchLogos();
+    }, []);
+
+
+
+
+    // contact
+    const fetchContacts = async () => {
+        try {
+            const response = await axios.get(`${server}/contact/public/get-all-information`);
+            setContacts(response.data.contacts);
+            // console.log(response.data.contacts);
+
+        } catch (error) {
+            console.error("Error fetching contacts:", error);
+            toast.error("Failed to fetch contacts.");
+        }
+    };
+
+    useEffect(() => {
+        fetchContacts();
+    }, []);
+
+    // Extract the phone number from the contact data
+    const phoneNumber = contact.length > 0 ? contact[0].phoneNumber : ""; // Fallback number
+
+
     return (
         <nav className={`header ${scrolled ? "sticky-header" : ""}`}>
             <div className="logo">
-                <Link to={"/"}>
-                    <img src={logo} alt="logo" />
-                </Link>
-                <h2>Cemstar</h2>
+                {logos.map((logo) => (
+                    <Link to={"/"} key={logo._id}>
+                        <img src={logo.imageUrl} alt="logo" />
+                    </Link>
+                ))}
+
             </div>
 
             <div className="right">
@@ -72,7 +122,7 @@ const Header = () => {
                 </ul>
 
                 <div>
-                    <Link to={"tel:919903075394"} className="call-now-btn">
+                    <Link to={`tel:${phoneNumber}`} className="call-now-btn">
                         CALL NOW
                     </Link>
                 </div>

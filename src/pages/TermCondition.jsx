@@ -1,10 +1,44 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
+import axios from "axios";
+import { toast } from "react-hot-toast";
+import { server } from "../server.js";
+
+
+
 
 const TermsConditions = () => {
 
+    const [contact, setContacts] = useState([]);
+
     useEffect(() => {
         window.scrollTo(0, 0);
+    }, []);
+
+
+
+
+    // contact
+    const fetchContacts = async () => {
+        try {
+            const response = await axios.get(`${server}/contact/public/get-all-information`);
+            setContacts(response.data.contacts);
+            console.log(response.data.contacts);
+
+        } catch (error) {
+            console.error("Error fetching contacts:", error);
+            toast.error("Failed to fetch contacts.");
+        }
+    };
+
+    // Extract the phone number from the contact data
+    const phoneNumber = contact.length > 0 ? contact[0].phoneNumber : ""; // Fallback number
+    const FullAddress = contact.length > 0 ? contact[0].address : ""; // Fallback number
+
+
+
+    useEffect(() => {
+        fetchContacts();
     }, []);
     return (
         <>
@@ -80,15 +114,9 @@ const TermsConditions = () => {
                             For any inquiries, contact us at{' '}
                             <a className="email-link">
                                 <br></br>
-                                805 A, 8th Floor, 349 Business Point,
+                                Address: {FullAddress}
                                 <br></br>
-                                Opp. Western Express Highway Metro Station,
-                                <br></br>
-                                Western Express Highway, Andheri (East),
-                                <br></br>
-                                Mumbai 400 069.
-                                <br></br>
-                                Phone: +91 9903 075394
+                                Phone: +91{" "}{phoneNumber}
                             </a>.
                         </p>
                     </section>
@@ -106,11 +134,11 @@ export default TermsConditions;
 
 // {/* <Helmet>
 //     {/* Standard SEO */}
-//     <title>Privacy Policy | Your Website Name</title>
-//     <meta name="description" content="Learn more about our privacy policy, how we handle user data, and how we protect your personal information." />
-//     <meta name="keywords" content="privacy, policy, data protection, personal information" />
-//     <meta name="robots" content="index, follow" />
-//     <link rel="canonical" href="https://www.yourwebsite.com/privacy" />
+// <title>Privacy Policy | Your Website Name</title>
+// <meta name="description" content="Learn more about our privacy policy, how we handle user data, and how we protect your personal information." />
+// <meta name="keywords" content="privacy, policy, data protection, personal information" />
+// <meta name="robots" content="index, follow" />
+// <link rel="canonical" href="https://www.yourwebsite.com/privacy" />
 
 //     {/* Open Graph (OG) tags for social media */}
 //     <meta property="og:title" content="Privacy Policy | Your Website Name" />

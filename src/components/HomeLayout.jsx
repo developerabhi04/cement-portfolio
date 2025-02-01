@@ -1,7 +1,6 @@
 import { lazy } from "react";
 import { Helmet } from "react-helmet-async";
 
-
 const Home = lazy(() => import("../pages/Home"));
 const Construction = lazy(() => import("../pages/Construction"));
 const Form = lazy(() => import("../pages/Form"));

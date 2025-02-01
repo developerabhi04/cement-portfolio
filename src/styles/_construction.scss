@@ -17,22 +17,31 @@
     }
 
     .cards-container {
-        display: flex;
-        justify-content: space-between;
+        display: grid;
+        // justify-content: space-between;
+        grid-template-columns: repeat(3, 1fr);
         gap: 20px;
         width: 100%;
         max-width: 1200px;
 
+        // @media (max-width: 768px) {
+        //     flex-direction: column;
+        //     align-items: center;
+        // }
+
+        @media (max-width: 1024px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
         @media (max-width: 768px) {
-            flex-direction: column;
-            align-items: center;
+            grid-template-columns: 1fr;
         }
 
         .card {
             background-color: white;
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            width: 31%;
+            // width: 31%;
             padding: 20px;
             transition: transform 0.3s ease-in-out;
 
@@ -60,7 +69,7 @@
 
                 img {
                     width: 100%;
-                    max-width: 100%;
+                    // max-width: 100%;
                     height: auto;
                     border-radius: 8px;
                     object-fit: cover;

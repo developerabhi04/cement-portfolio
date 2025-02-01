@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Dialog, DialogTitle, DialogContent, TextField, Button, DialogActions, Grid, IconButton, Typography, Snackbar, Alert } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { styled } from '@mui/system';
-import { server } from "../main";
+import { server } from "../server.js";
 
 
 // Styled components
@@ -178,7 +178,7 @@ const FormPopup = () => {
             <Dialog open={showForm} onClose={null} scroll="body" fullWidth maxWidth="sm" >
 
                 <DialogTitleStyled>
-                    <Typography variant="h4" textAlign="center" component="div">Cemstar - Supplies Cement Online Apply</Typography>
+                    <Typography variant="h4" textAlign="center" component="div">Online Apply Here</Typography>
                     <IconButton edge="end" color="inherit" onClick={closeForm}>
                         <CloseIcon />
                     </IconButton>

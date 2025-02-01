@@ -1,9 +1,56 @@
 import { Backdrop, SpeedDial, SpeedDialAction } from "@mui/material";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { MarkUnreadChatAlt, WhatsApp, CallOutlined } from "@mui/icons-material"; // Example icons
+import axios from "axios";
+import toast from "react-hot-toast";
+import { server } from "../server.js";
 
 const UserOptions = () => {
     const [open, setOpen] = useState(false);
+
+    // contact
+    const [contact, setContacts] = useState([]);
+
+    // contact
+    const fetchContacts = async () => {
+        try {
+            const response = await axios.get(`${server}/contact/public/get-all-information`);
+            setContacts(response.data.contacts);
+            // console.log(response.data.contacts);
+
+        } catch (error) {
+            console.error("Error fetching contacts:", error);
+            toast.error("Failed to fetch contacts.");
+        }
+    };
+
+    useEffect(() => {
+        fetchContacts();
+    }, []);
+
+
+
+    // Ensure contact array is not empty and extract phoneNumber safely
+    const rawPhoneNumber = contact.length > 0 && contact[0].phoneNumber
+        ? String(contact[0].phoneNumber).trim()  // Ensure it's a string and remove whitespace
+        : "";
+
+    // Remove all non-numeric characters (like spaces, dashes, or parentheses)
+    let phoneNumber = rawPhoneNumber.replace(/\D/g, "");
+
+    // If the number is exactly 10 digits, add the India country code (+91)
+    if (phoneNumber.length === 10) {
+        phoneNumber = "91" + phoneNumber;
+    }
+
+    // Ensure the number is valid for WhatsApp (minimum 12 digits including country code)
+    const whatsappUrl = phoneNumber.length >= 12
+        ? `https://wa.me/${phoneNumber}`
+        : "#";  // Prevents invalid links
+
+    console.log("Formatted WhatsApp Number:", phoneNumber);
+    console.log("Generated WhatsApp URL:", whatsappUrl);
+
 
     return (
         <Fragment>
@@ -40,7 +87,7 @@ const UserOptions = () => {
                     icon={<CallOutlined sx={{ fontSize: 38, color: "#fff" }} />}
                     tooltipTitle="Call"
                     onClick={() => console.log("Go to Home")}
-                    href="tel:918910503006"
+                    href={`tel:${phoneNumber}`}
                     target="_blank"
                     sx={{
                         backgroundColor: 'rgb(3, 231, 139)', // Set background color
@@ -56,7 +103,7 @@ const UserOptions = () => {
                     icon={<WhatsApp sx={{ fontSize: 38, color: "#fff" }} />}
                     tooltipTitle="WhatsApp"
                     onClick={() => console.log("Go to Profile")}
-                    href="https://web.whatsapp.com/send?phone=918910503006&text="
+                    href={whatsappUrl}
                     target="_blank"
                     sx={{
                         backgroundColor: '#49E670', // Set background color

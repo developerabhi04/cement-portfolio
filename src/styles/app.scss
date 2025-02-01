@@ -10,6 +10,16 @@
 @use "Footer" as *;
 @use "policy" as *;
 @use "services-footer" as *;
+@use "admin/logo" as *;
+@use "admin/banner" as *;
+@use "admin/contact" as *;
+
+@use "admin/section/section1" as *;
+@use "admin/section/section2" as *;
+@use "admin/section/section3" as *;
+@use "admin/section/section4" as *;
+@use "admin/section/section5" as *;
+@use "admin/section/section6" as *;
 
 @use "HomeLayout" as *;
 @use "mediaquery" as *;

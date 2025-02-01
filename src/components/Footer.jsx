@@ -5,7 +5,7 @@ const Footer = () => {
     <footer className="footer">
       <div className="footer-container">
         <div className="footer-logo">
-          <h2>CemStar Supplies</h2>
+          <h2></h2>
           <p>Your trusted partner in the construction industry</p>
         </div>
 
@@ -60,7 +60,7 @@ const Footer = () => {
       </div>
 
       <div className="footer-bottom">
-        <p>&copy; {new Date().getFullYear()} CemStar Supplies. All rights reserved.</p>
+        <p>&copy; {new Date().getFullYear()}. All rights reserved.</p>
       </div>
     </footer>
   );

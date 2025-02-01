@@ -1,38 +1,33 @@
-import { StrictMode } from 'react';
+// import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { HelmetProvider } from "react-helmet-async";
 import "./styles/app.scss";
 import App from './App.jsx';
+import { Provider } from "react-redux";
+import store from './redux/store.js';
 
 
-export const server = "https://cement-backend-data.onrender.com/api/v1";
-// export const server = "http://localhost:4000/api/v1";
+
 
 const rootElement = document.getElementById('root');
 
-// Ensure we only create root once
-if (!rootElement) throw new Error('Root element not found');
-const root = createRoot(rootElement);
+if (!rootElement) {
+  throw new Error('Root element not found');
+}
 
-root.render(
-  <StrictMode>
-    <HelmetProvider>
-      <App />
-    </HelmetProvider>
-  </StrictMode>,
+// Use a safe global check for the root instance
+if (!window.appRoot) {
+  window.appRoot = createRoot(rootElement); // Create the root once
+}
+
+
+
+window.appRoot.render(
+  // <StrictMode>
+    <Provider store={store}>
+      <HelmetProvider>
+        <App />
+      </HelmetProvider>
+    </Provider>
+  // </StrictMode>
 );
-
-
-
-
-
-
-
-
-// createRoot(document.getElementById('root')).render(
-//   <StrictMode>
-//     <HelmetProvider>
-//       <App />
-//     </HelmetProvider>
-//   </StrictMode>,
-// )

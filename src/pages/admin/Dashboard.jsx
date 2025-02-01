@@ -5,7 +5,7 @@ import moment from "moment";
 import { LineChart } from "./constants/Charts"; // Assuming you have a line chart component
 import { useEffect, useState } from "react";
 import axios from "axios"; // For making API calls
-import { server } from "../../main";
+import { server } from "../../server.js";
 
 const Dashboard = () => {
     const [stats, setStats] = useState({
@@ -43,11 +43,12 @@ const Dashboard = () => {
         <AdminLayout>
             <Container component={"main"}>
                 <Appbar />
+
                 <Stack direction={{ xs: "column", lg: "row" }}
                     flexWrap={"wrap"}
                     justifyContent={"center"}
                     alignItems={{ xs: "center", lg: "stretch" }}
-                    sx={{ gap: "2rem" }}>
+                    sx={{ gap: "1rem" }}>
 
                     <Paper elevation={3} sx={{
                         padding: "0.7rem 1.5rem",

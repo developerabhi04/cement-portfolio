@@ -1,8 +1,8 @@
 import { TextField, Button, Grid, Typography, Snackbar, Alert } from "@mui/material";
 import { styled } from '@mui/system';
-import { useState } from "react";
-import { server } from "../main";
-
+import { useEffect, useState } from "react";
+import { submitForm } from "../redux/actions/formAction";
+import { useDispatch, useSelector } from "react-redux";
 
 // Styled components
 const FormContainer = styled('div')(({ theme }) => ({
@@ -25,6 +25,8 @@ const SubmitButton = styled(Button)(() => ({
 }));
 
 const Form = () => {
+    const [openSnackbar, setOpenSnackbar] = useState(false);
+    const [severity, setSeverity] = useState("success");
 
     const [name, setName] = useState("");
     const [contactNumber, setContactNumber] = useState("");
@@ -35,18 +37,25 @@ const Form = () => {
     const [state, setState] = useState("");
     const [pinCode, setPincode] = useState("");
 
-
     // Validation errors
     const [nameError, setNameError] = useState("");
     const [contactNumberError, setContactNumberError] = useState("");
     const [alternateNumberError, setAlternateNumberError] = useState("");
     const [pinCodeError, setPinCodeError] = useState("");
 
-    // 
-    const [open, setOpen] = useState(false);
-    const [message, setMessage] = useState('');
-    const [severity, setSeverity] = useState("success");
-    const [isSubmitting, setIsSubmitting] = useState(false);
+    const dispatch = useDispatch();
+    const { loading, success, message, error } = useSelector((state) => state.form);
+
+    const reset = () => {
+        setName("");
+        setContactNumber("");
+        setAlternateNumber("");
+        setCementName("");
+        setQuantity("");
+        setCity("");
+        setState("");
+        setPincode("");
+    };
 
 
     // Validation logic
@@ -73,8 +82,7 @@ const Form = () => {
         return "";
     };
 
-
-    const submitHandler = async (e) => {
+    const submitHandler = (e) => {
         e.preventDefault();
 
         // Final validation before submission
@@ -83,7 +91,6 @@ const Form = () => {
         const alternateNumberError = validateAlternateNumber(alternateNumber);
         const pinCodeError = validatePinCode(pinCode);
 
-
         if (nameError || contactNumberError || alternateNumberError || pinCodeError) {
             setNameError(nameError);
             setContactNumberError(contactNumberError);
@@ -91,8 +98,6 @@ const Form = () => {
             setPinCodeError(pinCodeError);
             return;
         }
-
-
 
         const formData = {
             name,
@@ -105,89 +110,46 @@ const Form = () => {
             pinCode,
         };
 
-        setIsSubmitting(true);
-
-        try {
-
-            const response = await fetch(`${server}/user/submit`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData)
-            });
-
-            const data = await response.json();
-
-            if (data.success) {
-                setMessage('Thank! you for submitting the form Sucessfully, We will get back to you shortly.');
-                setSeverity("success");
-                setOpen(true);
-
-                setName('');
-                setContactNumber('');
-                setAlternateNumber('');
-                setCementName('');
-                setQuantity('');
-                setCity('');
-                setState('');
-                setPincode('');
-
-            } else {
-                setMessage('Error: ' + data.message);
-                setSeverity("error");
-                setOpen(true);
-            }
-        } catch (error) {
-            console.error('Error: ', error);
-            setMessage('Something went wrong');
-            setSeverity('error');
-            setOpen(true);
-        }
-    }
+        dispatch(submitForm(formData));
+    };
 
 
-    // const submitHandler = async (e) => {
-    //     e.preventDefault();
 
-    //     const formData = {
-    //         name,
-    //         contactNumber,
-    //         alternateNumber,
-    //         cementName,
-    //         quantity,
-    //         city,
-    //         state,
-    //         pinCode,
-    //     };
-
-    //     try {
-    //         const response = await axios.post(`${server}/user/submit`, formData, {
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //             }
-    //         });
-
-    //         // Check if the response was successful
-    //         if (response.data.success) {
-    //             alert('Submit Successfully');
-    //         } else {
-    //             alert('Error: ' + response.data.message);
-    //         }
-
-    //     } catch (error) {
-    //         console.error('Error: ', error);
-    //         alert('Something went wrong');
+    // useEffect(() => {
+    //     // Open the Snackbar when success or error changes
+    //     if (success || error) {
+    //         setSeverity(success ? "success" : "error");
+    //         setOpenSnackbar(true);
     //     }
-    // };
+    // }, [success, error]);
 
 
 
+    useEffect(() => {
+        // Show Snackbar on success or error
+        if (success || error) {
+            setSeverity(success ? "success" : "error");
+            setOpenSnackbar(true);
+        }
+
+        // Reset form fields after successful submission
+        if (success) {
+            reset();
+        }
+    }, [success, error]);
+
+
+    const handleSnackbarClose = (event, reason) => {
+        if (reason === "clickaway") {
+            return;
+        }
+        setOpenSnackbar(false);
+    };
     return (
         <FormContainer id="contact">
             {/* Center the heading */}
             <Typography variant="h4" gutterBottom textAlign="center" sx={{ marginBottom: "3rem", fontWeight: 600 }}>
-                Cemstar - Supplies Cement Online Apply
+                Online Apply
             </Typography>
 
             <form onSubmit={submitHandler}>
@@ -353,23 +315,29 @@ const Form = () => {
                         />
                     </Grid>
                 </Grid>
-                <SubmitButton type="submit" variant="contained" disabled={isSubmitting}>
-                    {isSubmitting ? "Submitting..." : "Send Now"}
+
+                <SubmitButton type="submit" variant="contained" disabled={loading}>
+                    {loading ? "Submitting..." : "Send Now"}
                 </SubmitButton>
             </form>
 
             {/* Snackbar for success/error message */}
-            <Snackbar open={open} autoHideDuration={6000} onClose={() => setOpen(false)} anchorOrigin={{ vertical: 'top', horizontal: 'center' }} sx={{
-                marginTop: '70px',
-            }}>
+            <Snackbar
+                open={openSnackbar}
+                autoHideDuration={6000}
+                onClose={handleSnackbarClose}
+                anchorOrigin={{ vertical: "top", horizontal: "center" }}
+            >
                 <Alert
-                    onClose={() => setOpen(false)}
+                    onClose={handleSnackbarClose}
                     severity={severity}
                     variant="filled"
-                    sx={{ width: '100%' }}>
-                    {message}
+                    sx={{ width: "100%" }}
+                >
+                    {success ? message : error}
                 </Alert>
             </Snackbar>
+
         </FormContainer>
     );
 };

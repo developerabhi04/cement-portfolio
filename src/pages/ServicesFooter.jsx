@@ -1,94 +1,76 @@
 import { Done, Phone } from "@mui/icons-material";
-
-
-const cementData = [
-    {
-        icon: <Done />,
-        title: "Premium Quality White Cement",
-    },
-    {
-        icon: <Done />,
-        title: "Waterproof Cement for Stronger Structures",
-    },
-    {
-        icon: <Done />,
-        title: "Reliable Cement Suppliers Across India",
-    },
-    {
-        icon: <Done />,
-        title: "Comprehensive Testing for Superior Quality",
-    },
-    {
-        icon: <Done />,
-        title: "Top-Rated Construction Companies You Can Trust",
-    },
-    {
-        icon: <Done />,
-        title: "Order Cement Online with Ease",
-    },
-    {
-        icon: <Done />,
-        title: "Convenient Cement Booking Made Simple",
-    },
-    {
-        icon: <Done />,
-        title: "Leading Cement Agencies for Your Needs",
-    },
-    {
-        icon: <Done />,
-        title: "Bulk Cement Orders with Guaranteed Delivery",
-    },
-]
-
-const cement = [
-    {
-        icon: <Done />,
-        title: "High-Performance Cemstar White Cement",
-    },
-    {
-        icon: <Done />,
-        title: "Affordable Cement Prices for Your Projects",
-    },
-    {
-        icon: <Done />,
-        title: "Trusted Bulk Cement Suppliers Nationwide",
-    },
-    {
-        icon: <Done />,
-        title: "Exclusive Cement Agency Deals and Partnerships",
-    },
-]
-
-const headerMessage = [
-    "Get the finest quality cement for your construction projects with Cemstar Supplies, India’s leading cement supplier. We emphasize on quality, reliable contractors, and the right location for all your building needs. Explore more today!"
-]
+import axios from "axios";
+import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import { server } from "../server.js";
 
 
 
 const ServicesFooter = () => {
+    const [sectionFive, setSectionFive] = useState([]);
+    const [contact, setContacts] = useState([]);
+
+    // Fetch all Section1
+    const fetchSectionFives = async () => {
+        try {
+            const response = await axios.get(`${server}/section-six/public/get-all-section-six`);
+            setSectionFive(response.data.sectionSixs);
+            // console.log(response.data.sectionSixs);
+        } catch (error) {
+            console.error("Error fetching sectionOne:", error);
+            toast.error("Failed to fetch sectionOne.");
+        };
+    }
+
+    useEffect(() => {
+        fetchSectionFives();
+    }, []);
+
+
+
+    // contact
+    const fetchContacts = async () => {
+        try {
+            const response = await axios.get(`${server}/contact/public/get-all-information`);
+            setContacts(response.data.contacts);
+            // console.log(response.data.contacts);
+
+        } catch (error) {
+            console.error("Error fetching contacts:", error);
+            toast.error("Failed to fetch contacts.");
+        }
+    };
+
+    useEffect(() => {
+        fetchContacts();
+    }, []);
+
+    // Extract the phone number from the contact data
+    const phoneNumber = contact.length > 0 ? contact[0].phoneNumber : ""; // Fallback number
+
+
     return (
         <section className="Services-Footer">
             <div>
                 <div>
-                    <h1>{headerMessage}</h1>
+                    <h1>{sectionFive.length > 0 ? sectionFive[0].hOne : ("loading")}</h1>
                 </div>
 
                 <div>
                     <ul>
-                        {cementData.map((cement, i) => (
+                        {sectionFive.map((cement, i) => (
                             <li key={i}>
-                                <span>{cement.icon}</span>
-                                <span>{cement.title}</span>
+                                <span><Done /></span>
+                                <span>{cement.hTwo}</span>
                             </li>
                         ))}
                     </ul>
 
 
                     <ul>
-                        {cement.map((cement, i) => (
+                        {sectionFive.map((cement, i) => (
                             <li key={i}>
-                                <span>{cement.icon}</span>
-                                <span>{cement.title}</span>
+                                <span>{cement.hThree}</span>
                             </li>
                         ))}
                     </ul>
@@ -96,7 +78,7 @@ const ServicesFooter = () => {
 
 
                     <div className="button-section">
-                        <a href="tel:919903075394">
+                        <a href={`tel:${phoneNumber}`}>
                             <button>
                                 <Phone />
                                 Call Now

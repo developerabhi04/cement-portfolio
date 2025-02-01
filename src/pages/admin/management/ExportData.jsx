@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import AdminLayout from './AdminLayout';
+import AdminLayout from '../AdminLayout';
 import { useGridApiRef, useKeepGroupedColumnsHidden } from '@mui/x-data-grid-premium';
-import TableExport from './TableExport';
+import TableExport from '../TableExport';
 import axios from 'axios';
-import { server } from '../../main';
+import { server } from '../../../server.js';
 
 
 

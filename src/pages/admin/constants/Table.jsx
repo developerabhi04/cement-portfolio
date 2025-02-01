@@ -3,7 +3,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { matBlack } from "./color";
 
 
-const Table = ({ rows, columns, heading, rowHeight = 80 }) => {
+const Table = ({ rows, columns, heading, rowHeight = 80, getRowId }) => {
     return (
         <Container sx={{ height: "100vh" }}>
 
@@ -32,6 +32,7 @@ const Table = ({ rows, columns, heading, rowHeight = 80 }) => {
                 <DataGrid
                     rows={rows}
                     columns={columns}
+                    getRowId={getRowId}
                     rowHeight={rowHeight}
                     style={{
                         height: "80%",

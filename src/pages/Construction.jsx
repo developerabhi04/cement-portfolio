@@ -1,51 +1,49 @@
-import img1 from "../assets/premium-concrete-mix-supply.jpg";
-import img2 from "../assets/cement-franchise.jpg";
-import img3 from "../assets/Wholesale-cement.jpg";
-
-
-
-const services = [
-  {
-    src: img1,
-    heading: "Premium Concrete Mix Supply",
-    paragraph: "For large-scale projects, we understand the need for an efficient procurement process. We offers a reliable solution for all your bulk cement needs, ensuring a smooth experience from start to finish.",
-  },
-  {
-    src: img2,
-    heading: "Cement Business Franchise",
-    paragraph: "Join our Franchisee Program, where success meets opportunity. Enter the thriving construction materials market and build a prosperous business with our trusted support.",
-  },
-  {
-    src: img3,
-    heading: "Wholesale Cement Suppliers",
-    paragraph: "Join the CemStar Supplies Cement Dealership Program – an exclusive opportunity to tap into the growing construction materials market and build a successful business.",
-  },
-]
-
-
+import axios from "axios";
+import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import { server } from "../server.js";
 
 
 const Construction = () => {
+
+  const [sectionOnes, setSectionOne] = useState([]);
+
+  // Fetch all Section1
+  const fetchSectionOnes = async () => {
+    try {
+      const response = await axios.get(`${server}/section-one/public/get-all-section-one`);
+      setSectionOne(response.data.sectionOnes);
+      // console.log(response.data.sectionOnes);
+    } catch (error) {
+      console.error("Error fetching sectionOne:", error);
+      toast.error("Failed to fetch sectionOne.");
+    }
+  };
+
+  useEffect(() => {
+    fetchSectionOnes();
+  }, []);
   return (
     <section className="construction-container">
       <div className="construction-header">
-        <h2>Reliable Cement Services</h2>
+        <h2>{sectionOnes.length > 0 ? sectionOnes[0].hOne : "Loading..."}</h2>
       </div>
 
       {/* 3 Cards */}
-      <section className="cards-container" >
+      <section className="cards-container">
 
-        {services.map((value, index) => (
+        {sectionOnes.map((value, index) => (
           <div className="card" key={index}>
             <figure className="card-figure">
-              <img src={value.src} alt="Concrete Mix Supply Logo" />
+              <img src={value.cardUrl} alt="Concrete Mix Supply Logo" />
             </figure>
             <div className="card-content">
-              <h3>{value.heading}</h3>
-              <p>{value.paragraph}</p>
+              <h3>{value.hTwo}</h3>
+              <p>{value.content}</p>
             </div>
           </div>
         ))}
+
       </section>
     </section>
   );

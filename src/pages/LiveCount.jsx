@@ -1,6 +1,8 @@
 import { useEffect, useState, Fragment, useRef } from "react";
 import { Add } from "@mui/icons-material";
-
+import axios from "axios";
+import toast from "react-hot-toast";
+import { server } from "../server.js";
 
 
 // Data for accomplishments
@@ -11,28 +13,13 @@ const accomplishmentsData = [
     { count: 654, title: "Innovative Products" }
 ];
 
-// Data for bulk cement cards
-const bulkCementData = [
-    {
-        title: "Streamlined Cement Bulk Booking",
-        description:
-            "Building a successful online cement dealership showcasing leading brands involves thorough preparation, " +
-            "strategic collaborations, and targeted marketing efforts. Follow this step-by-step guide to launch and " +
-            "operate your dealership under our respected brand, guaranteeing quality and variety in every offering."
-    },
-    {
-        title: "Bulk Cement Orders Made Easy",
-        description:
-            "Launching an online platform for bulk cement orders, featuring top-tier brands, requires careful planning, " +
-            "strong partnerships, and effective marketing strategies. Below is a detailed guide to help you successfully " +
-            "set up and manage your online cement dealership under our trusted brand, ensuring a diverse range of premium products."
-    }
-];
 
 
 
 
 const LiveCount = () => {
+    const [sectionFour, setSectionFour] = useState([]);
+
     const [counts, setCounts] = useState({
         projectCount: 0,
         managerCount: 0,
@@ -41,6 +28,23 @@ const LiveCount = () => {
     });
 
     const sectionRef = useRef(null); // Reference to the section
+
+
+
+    const fetchSectionFours = async () => {
+        try {
+            const response = await axios.get(`${server}/section-four/public/get-all-section-four`);
+            setSectionFour(response.data.SectionFours || []); // Ensure it's always an array
+        } catch (error) {
+            console.error("Error fetching sectionFour:", error);
+            toast.error("Failed to fetch sectionFour.");
+            setSectionFour([]); // Set to empty array on error
+        }
+    };
+
+    useEffect(() => {
+        fetchSectionFours();
+    }, []);
 
 
 
@@ -98,8 +102,8 @@ const LiveCount = () => {
             <section className="live-Data" ref={sectionRef}>
                 <div>
                     <div>
-                        <h2>Our Accomplishments</h2>
-                        <h1>Experience To Be Trusted</h1>
+                        <h2>{sectionFour.length > 0 ? sectionFour[0].hOne : "Loading..."}</h2>
+                        <h1>{sectionFour.length > 0 ? sectionFour[0].hTwo : "Loading..."}</h1>
                     </div>
 
                     <section>
@@ -115,14 +119,16 @@ const LiveCount = () => {
                 </div>
             </section>
 
+
+
             {/* section section */}
             <section className="bulk-data">
                 <div>
-                    {bulkCementData.map((item, index) => (
+                    {sectionFour.map((item, index) => (
                         <div key={index}>
-                            <h2>{item.title}</h2>
+                            <h2>{item.hThree}</h2>
                             <div>
-                                <p>{item.description}</p>
+                                <p>{item.content}</p>
                             </div>
                         </div>
                     ))}

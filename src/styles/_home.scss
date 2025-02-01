@@ -7,7 +7,6 @@
     align-items: center;
     z-index: 0;
 
-    // Banner background styling
     .banner {
         position: absolute;
         top: 0;
@@ -17,15 +16,12 @@
         background: linear-gradient(to bottom,
                 rgba(0, 0, 0, 0) 0%,
                 rgba(0, 0, 0, 0.5) 20%,
-                rgb(47 43 43 / 50%) 40%,
-                rgba(0, 0, 0, 0) 100%,
-            ),
-            url(/src/assets/banners.jpg) no-repeat center / cover;
-        background-blend-mode: overlay;
-        z-index: 0; // Background layer
+                rgb(47, 43, 43, 0.5) 40%,
+                rgba(0, 0, 0, 0) 100%);
+        background-size: cover;
+        background-position: center;
     }
 
-    // Wrapper for the content to manage spacing and layout
     .content-wrapper {
         position: relative;
         z-index: 1;
@@ -35,7 +31,6 @@
         width: 100%;
         height: 100%;
 
-        // Content inside the wrapper
         .content {
             color: white;
             text-align: center;
@@ -43,11 +38,9 @@
             max-width: 1140px;
             width: 100%;
 
-            // Heading section
             .heading-section {
                 h2 {
                     font-size: 2.5rem;
-                    // margin-top: 3rem;
 
                     @media (max-width: 768px) {
                         font-size: 2rem;
@@ -60,7 +53,6 @@
                 }
             }
 
-            // Subheading section
             .subheading-section {
                 h2 {
                     font-size: 2rem;
@@ -76,7 +68,6 @@
                 }
             }
 
-            // Description section
             .description-section {
                 p {
                     font-size: 1rem;
@@ -95,12 +86,11 @@
                 }
             }
 
-            // Button section
             .button-section {
                 display: flex;
                 justify-content: center;
                 align-items: center;
-
+                
                 button {
                     display: flex;
                     justify-content: center;
@@ -140,7 +130,6 @@
         }
     }
 
-    // Mobile adjustments for the overall section
     @media (max-width: 768px) {
         height: auto;
     }
